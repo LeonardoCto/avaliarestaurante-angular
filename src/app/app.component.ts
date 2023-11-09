@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Directive } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
