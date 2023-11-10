@@ -1,9 +1,15 @@
-<div class="container">
-  <div class="row">
-    <h1 class="badge bg-success">Bem vindo ao projeto
-      <span class="badge bg-success">Grupito: Leon, vintin, arturo e garcia</span>
-
-    </h1>
-
+<nav class="bg-white shadow-sm p-4 flex justify-between">
+  <button class="text-black-500 text-xl" href="/">AvaliaRestaurante</button>
+  <div class="flex items-center bg-gray-200 rounded-full p-2 w-96 relative">
+    <input type="text" placeholder="Buscar" class="bg-transparent outline-none w-full pr-8">
+    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+    </svg>
   </div>
-</div>
+  <div class="relative group">
+    <button class="text-black-500 text-xl group-hover:bg-gray-200 ml-24 mr-4 mt-2">
+      <img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/48/guest-male.png" alt="guest-male"/>
+    </button>
+  </div>
+</nav>
+<router-outlet></router-outlet>
