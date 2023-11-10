@@ -1,0 +1,59 @@
+
+<div class="flex flex-col items-center justify-center mt-10 pb-1 ">
+  <h1 class="text-3xl font-semibold text-gray-600 dark:text-black-400 mb-4 ml-4">
+    Aonde seu restaurante se localiza?
+  </h1>
+</div>
+<div class="flex flex-col items-center justify-center  pb-1">
+  <h2 class="text-1xl font-semibold text-gray-400 mb-4 ml-4">
+    Informe o CPNJ.
+  </h2>
+</div>
+
+<form class="mt-8 px-4 space-y-4 ml-8 mr-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="pais" class="text-gray-600 dark:text-gray-500">CPNJ</label>
+      <input type="text" id="pais" name="pais" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+    <div>
+      <label for="cidade" class="text-gray-600 dark:text-gray-500">Cidade</label>
+      <input type="text" id="cidade" name="cidade" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="estado" class="text-gray-600 dark:text-gray-500">Estado</label>
+      <input type="text" id="estado" name="estado" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+    <div>
+      <label for="cep" class="text-gray-600 dark:text-gray-500">CEP</label>
+      <input type="text" id="cep" name="cep" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+  </div>
+  <div>
+    <label for="rua" class="text-gray-600 dark:text-gray-500">Rua</label>
+    <input type="text" id="rua" name="rua" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="bairro" class="text-gray-600 dark:text-gray-500">Bairro</label>
+      <input type="text" id="bairro" name="bairro" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+    <div>
+      <label for="numero" class="text-gray-600 dark:text-gray-500">Número</label>
+      <input type="number" id="numero" name="numero" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+  </div>
+</form>
+
+
+
+<footer class="fixed bottom-8 left-0 w-full p-4">
+  <button class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none" (click)="avancar()">
+    Avançar
+  </button>
+  <a class="underline bg-white-800 text-black px-4 py-2 absolute left-4 hover:bg-blue-600 focus:outline-none" href="/cadastro">
+    Voltar
+  </a>
+</footer>

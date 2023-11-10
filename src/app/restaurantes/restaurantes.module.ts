@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { RestaurantesRoutingModule } from './restaurantes-routing.module';
 import { RestauranteListagemComponent } from './restaurante-listagem/restaurante-listagem.component';
 import { RestauranteCadastroComponent } from './restaurante-cadastro/restaurante-cadastro.component';
+import { RestauranteEnderecoComponent } from './restaurante-endereco/restaurante-endereco.component';
+import { RestauranteImagemComponent } from './restaurante-imagem/restaurante-imagem.component';
 
 @NgModule({
   declarations: [
     RestauranteListagemComponent,
-    RestauranteCadastroComponent
+    RestauranteCadastroComponent,
+    RestauranteEnderecoComponent,
+    RestauranteImagemComponent
   ],
   imports: [
     CommonModule,

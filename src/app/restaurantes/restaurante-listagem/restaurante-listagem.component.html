@@ -1,3 +1,19 @@
+
+<div class="flex justify-center items-center mt-4 mb-4">
+  <button class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
+    <img width="32" height="32" src="https://img.icons8.com/material-rounded/24/marker.png" alt="marker"/>
+    <p class="ml-2 font-segoe-ui">Localização</p>
+  </button>
+  <button class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
+    <img width="32" height="32" src="https://img.icons8.com/ios-glyphs/30/star--v1.png" alt="star--v1"/>
+    <p class="ml-2 font-segoe-ui">Menor avaliação</p>
+  </button>
+  <button class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
+    <img width="32" height="32" src="https://img.icons8.com/windows/32/five-of-five.png" alt="five-of-five"/>
+    <p class="ml-2 font-segoe-ui">Maior avaliação</p>
+  </button>
+</div>
+
 <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
   <div class="bg-white rounded-lg overflow-hidden shadow-md" *ngFor="let restaurante of restaurantes; let i = index">
     <img [src]="restaurantes[i]?.imagem" alt="{{ restaurante.nome }}" class="w-full h-64 object-cover" />
