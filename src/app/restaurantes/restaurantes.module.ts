@@ -6,13 +6,15 @@ import { RestauranteListagemComponent } from './restaurante-listagem/restaurante
 import { RestauranteCadastroComponent } from './restaurante-cadastro/restaurante-cadastro.component';
 import { RestauranteEnderecoComponent } from './restaurante-endereco/restaurante-endereco.component';
 import { RestauranteImagemComponent } from './restaurante-imagem/restaurante-imagem.component';
+import { RestauranteFinalizarComponent } from './restaurante-finalizar/restaurante-finalizar.component';
 
 @NgModule({
   declarations: [
     RestauranteListagemComponent,
     RestauranteCadastroComponent,
     RestauranteEnderecoComponent,
-    RestauranteImagemComponent
+    RestauranteImagemComponent,
+    RestauranteFinalizarComponent
   ],
   imports: [
     CommonModule,

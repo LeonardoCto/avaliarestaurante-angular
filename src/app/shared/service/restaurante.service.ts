@@ -13,6 +13,10 @@ export class RestauranteService {
 
   private readonly API = "http://localhost:8080/api/restaurante";
 
+  salvar(restaurante: Restaurante): Observable<Restaurante> {
+    return this.httpClient.post<Restaurante>(this.API, restaurante);
+  }
+
   listarTodos(): Observable<Array<Restaurante>> {
     return this.httpClient.get<Array<Restaurante>>(this.API);
   }

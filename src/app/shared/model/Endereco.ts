@@ -1,10 +1,10 @@
 export class Endereco {
   id: number;
-  rua: string;
+  rua: String;
   numero: number;
-  cidade: string;
-  bairro: string;
-  estado: string;
-  cep: string;
+  cidade: String;
+  bairro: String;
+  estado: String;
+  cep: String;
 
 }

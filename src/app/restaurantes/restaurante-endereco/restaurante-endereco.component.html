@@ -14,35 +14,35 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="pais" class="text-gray-600 dark:text-gray-500">CPNJ</label>
-      <input type="text" id="pais" name="pais" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      <input type="text" id="pais" [(ngModel)]="cnpj" name="pais" class="w-full  font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
     </div>
     <div>
       <label for="cidade" class="text-gray-600 dark:text-gray-500">Cidade</label>
-      <input type="text" id="cidade" name="cidade" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      <input type="text" id="cidade" [(ngModel)]="cidade" name="cidade" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
     </div>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="estado" class="text-gray-600 dark:text-gray-500">Estado</label>
-      <input type="text" id="estado" name="estado" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      <input type="text" id="estado" [(ngModel)]="estado" name="estado" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
     </div>
     <div>
       <label for="cep" class="text-gray-600 dark:text-gray-500">CEP</label>
-      <input type="text" id="cep" name="cep" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      <input type="text" id="cep" [(ngModel)]="cep" name="cep" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
     </div>
   </div>
   <div>
     <label for="rua" class="text-gray-600 dark:text-gray-500">Rua</label>
-    <input type="text" id="rua" name="rua" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    <input type="text" id="rua" [(ngModel)]="rua" name="rua" class="w-full  font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="bairro" class="text-gray-600 dark:text-gray-500">Bairro</label>
-      <input type="text" id="bairro" name="bairro" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      <input type="text" id="bairro" [(ngModel)]="bairro" name="bairro" class="w-full  font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
     </div>
     <div>
       <label for="numero" class="text-gray-600 dark:text-gray-500">Número</label>
-      <input type="number" id="numero" name="numero" class="w-full text-center font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      <input type="number" id="numero" [(ngModel)]="numero" name="numero" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
     </div>
   </div>
 </form>

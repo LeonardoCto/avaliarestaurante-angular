@@ -1,18 +1,36 @@
+import { DadosCompartilhadosRestauranteService } from './../../shared/service/dados-compartilhados-restaurante.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Restaurante } from 'src/app/shared/model/Restaurante';
 
 @Component({
   selector: 'app-restaurante-cadastro',
   templateUrl: './restaurante-cadastro.component.html',
   styleUrls: ['./restaurante-cadastro.component.scss']
 })
-export class RestauranteCadastroComponent  {
+export class RestauranteCadastroComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dadosCompartilhadosRestauranteService: DadosCompartilhadosRestauranteService) { }
+
+  nome: String = "";
+
+  restaurante: Restaurante = new Restaurante();
 
   avancar() {
 
-    this.router.navigate(['/endereco']);
-  }
+    if (this.nome) {
 
+    this.dadosCompartilhadosRestauranteService.setNome(this.nome);
+
+    console.log("nome: " + this.nome);
+
+    this.router.navigate(['/endereco']);
+
+    } else {
+      alert("Por favor, preencha o nome antes de avançar.");
+    }
+  }
+  ngOnInit(): void {
+
+  }
 }

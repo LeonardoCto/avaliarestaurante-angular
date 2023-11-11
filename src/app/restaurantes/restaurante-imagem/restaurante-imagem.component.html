@@ -17,24 +17,13 @@
       <p class="mb-2 text-sm text-gray-500 dark:text-gray-600"><span class="font-semibold">Click para carregar</span> ou arraste e solte</p>
       <p class="text-xs text-gray-500 dark:text-gray-600">SVG, PNG, JPG, or GIF </p>
     </div>
-    <input id="imagem1" type="file" class="hidden"/>
+    <input id="imagem1" type="file" class="hidden" (change)="onFileSelected($event)"/>
   </label>
 </div>
 
 <footer class="fixed bottom-8 left-0 w-full p-4">
   <button class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none" (click)="avancar()">
     Avançar
-  </button>
-  <a class="underline bg-white-800 text-black px-4 py-2 absolute left-4 hover:bg-blue-600 focus:outline-none" href="/descricao">
-    Voltar
-  </a>
-</footer>
-
-
-
-<footer class="fixed bottom-8 left-0 w-full p-4">
-  <button class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none" (click)="avancar()">
-    Finalizar cadastro
   </button>
   <a class="underline rounded-lg bg-white-800 text-black px-4 py-2 absolute left-4 hover:bg-blue-600 focus:outline-none" href="/endereco">
     Voltar
