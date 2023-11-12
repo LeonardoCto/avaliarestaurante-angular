@@ -17,8 +17,8 @@ export class PessoaService {
     return this.httpClient.post<Pessoa>(this.API, pessoa);
   }
 
-  login(pessoaDTO: PessoaDTO): Observable<any> {
-    return this.httpClient.post<any>(`${this.API}/login`, pessoaDTO);
+  login(pessoaDTO: PessoaDTO): Observable<number> {
+    return this.httpClient.post<number>(`${this.API}/login`, pessoaDTO);
   }
 
 }
