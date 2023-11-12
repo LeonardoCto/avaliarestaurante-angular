@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router : Router){}
 
   isLoginPage(): boolean {
-    return this.router.url === '/login';
+    const currentUrl = this.router.url;
+    return currentUrl === '/login' || currentUrl === '/cadastrar' || currentUrl === '/localidade';
   }
-
 }

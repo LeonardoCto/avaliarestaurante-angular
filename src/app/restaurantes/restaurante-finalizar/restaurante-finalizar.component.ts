@@ -25,8 +25,6 @@ export class RestauranteFinalizarComponent {
 
     restaurante.nome = restauranteNome.nome;
     restaurante.cnpj = restauranteCnpj.cnpj;
-
-
     restaurante.endereco = restauranteEndereco;
 
     this.restauranteService.salvar(restaurante).subscribe(
