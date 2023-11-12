@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestaurantesModule } from './restaurantes/restaurantes.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     RestaurantesModule,
-    HttpClientModule
+    HttpClientModule,
+    UsuariosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
