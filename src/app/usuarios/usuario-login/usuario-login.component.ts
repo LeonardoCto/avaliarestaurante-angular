@@ -33,10 +33,11 @@ export class UsuarioLoginComponent {
     };
 
     this.pessoaService.login(pessoaDTO).subscribe(
-      (userId) => {
-        console.log('Login bem-sucedido. ID do usuário:', userId);
+      (pessoa) => {
+        console.log('Login bem-sucedido. ID do usuário:', pessoa.id);
 
-        this.authService.setUserId(userId);
+        this.authService.setUserId(pessoa.id);
+        this.authService.setPessoa(pessoa);
 
         this.router.navigate(['/']);
       },

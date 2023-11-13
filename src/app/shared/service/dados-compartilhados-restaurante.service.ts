@@ -14,11 +14,13 @@ export class DadosCompartilhadosRestauranteService {
   private cnpj: Restaurante = new Restaurante();
   private imagem: Restaurante = new Restaurante();
 
-  setImagem(imagem: Blob){
-    this.restaurante.imagem = imagem;
+  setImagemRestaurante(imagem: File): void {
+    const blob = new Blob([imagem], { type: imagem.type });
+    this.imagem.imagem = blob;
   }
-  getImagem(): {imagem: Blob}{
-    return {imagem: this.restaurante.imagem}
+
+  getImagemRestaurante(): Blob | null {
+    return this.restaurante.imagem;
   }
 
   setNome(nome: String){
