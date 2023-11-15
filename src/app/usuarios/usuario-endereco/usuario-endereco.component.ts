@@ -37,7 +37,6 @@ export class UsuarioEnderecoComponent {
     pessoa.email = pessoaDados.email;
     pessoa.cpf = pessoaDados.cpf;
     pessoa.senha = pessoaDados.senha;
-
     pessoa.endereco = pessoaEndereco;
 
     this.pessoaService.salvar(pessoa).subscribe(

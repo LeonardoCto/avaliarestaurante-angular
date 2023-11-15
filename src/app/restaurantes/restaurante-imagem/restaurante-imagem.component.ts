@@ -9,19 +9,38 @@ import { DadosCompartilhadosRestauranteService } from 'src/app/shared/service/da
 })
 export class RestauranteImagemComponent {
 
-  selectedFile: File | null = null;
+  private imagemSelecionada: File | null = null;
 
   constructor(private router: Router, private dadosCompartilhadosService: DadosCompartilhadosRestauranteService) { }
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile) {
-      this.dadosCompartilhadosService.setImagemRestaurante(this.selectedFile);
-      console.log("imagem selecionada:" + this.selectedFile)
+  selecionarImagem(event: any): void {
+    const files = event.target.files;
+
+    if (files && files.length > 0) {
+      this.imagemSelecionada = files[0];
+
+      this.converterArquivoParaBase64(this.imagemSelecionada!);
     }
   }
 
   avancar() {
-    this.router.navigate(['/finalizar']);
+    if (this.imagemSelecionada) {
+      this.router.navigate(['/finalizar']);
+    } else {
+      console.error('Nenhuma imagem selecionada.');
+    }
+  }
+
+  private converterArquivoParaBase64(arquivo: File): void {
+    const leitor = new FileReader();
+
+    leitor.onload = (e) => {
+
+      const conteudoBase64 = leitor.result as string;
+
+      this.dadosCompartilhadosService.setImagem(conteudoBase64);
+    };
+
+    leitor.readAsDataURL(arquivo);
   }
 }

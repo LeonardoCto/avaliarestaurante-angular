@@ -21,7 +21,7 @@ export class AppComponent {
 
     const userId = this.authService.getUserId();
     console.log(userId);
-    
+
     if (userId !== null) {
       this.router.navigate(['/cadastro']);
     } else {

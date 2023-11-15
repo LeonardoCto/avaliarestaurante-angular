@@ -11,16 +11,16 @@ export class DadosCompartilhadosRestauranteService {
 
   private restaurante: Restaurante = new Restaurante();
   private endereco: Endereco = new Endereco();
-  private cnpj: Restaurante = new Restaurante();
-  private imagem: Restaurante = new Restaurante();
+  private cnpjRestaurante: Restaurante = new Restaurante();
 
-  setImagemRestaurante(imagem: File): void {
-    const blob = new Blob([imagem], { type: imagem.type });
-    this.imagem.imagem = blob;
+  private imagemRestaurante: Restaurante = new Restaurante();
+
+  setImagem(imagem: String): void {
+    this.imagemRestaurante.imagem = imagem;
   }
 
-  getImagemRestaurante(): Blob | null {
-    return this.restaurante.imagem;
+  getImagem(): String {
+    return this.imagemRestaurante.imagem;
   }
 
   setNome(nome: String){
@@ -30,10 +30,10 @@ export class DadosCompartilhadosRestauranteService {
     return {nome: this.restaurante.nome}
   }
   setCnpj(cnpj: String){
-    this.restaurante.cnpj = cnpj;
+    this.cnpjRestaurante.cnpj = cnpj;
   }
   getCnpj(): {cnpj: String}{
-    return {cnpj: this.restaurante.cnpj}
+    return {cnpj: this.cnpjRestaurante.cnpj}
   }
 
   setEndereco(cidade: String, estado: String, cep: String, numero: number, bairro: String, rua: String) {

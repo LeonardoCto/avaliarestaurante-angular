@@ -21,7 +21,7 @@ export class RestauranteFinalizarComponent {
     const restauranteNome = this.dadosCompartilhadosRestauranteService.getNome();
     const restauranteCnpj = this.dadosCompartilhadosRestauranteService.getCnpj();
     const restauranteEndereco = this.dadosCompartilhadosRestauranteService.getEndereco();
-    const restauranteImagem = this.dadosCompartilhadosRestauranteService.getImagemRestaurante()
+    const restauranteImagem = this.dadosCompartilhadosRestauranteService.getImagem();
     const pessoa = this.authServiceService.getPessoa();
 
     const restaurante: Restaurante = new Restaurante();
@@ -30,7 +30,7 @@ export class RestauranteFinalizarComponent {
     restaurante.cnpj = restauranteCnpj.cnpj;
     restaurante.endereco = restauranteEndereco;
     restaurante.pessoa = pessoa;
-    restaurante.imagem = restauranteImagem!;
+    restaurante.imagem = restauranteImagem;
 
     this.restauranteService.salvar(restaurante).subscribe(
       (restauranteSalvo) => {

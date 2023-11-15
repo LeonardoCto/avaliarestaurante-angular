@@ -7,6 +7,6 @@ export class Restaurante {
   pessoa: Pessoa;
   endereco: Endereco;
   avaliacao: number;
-  imagem: Blob;
+  imagem: String;
   cnpj: String;
 }
