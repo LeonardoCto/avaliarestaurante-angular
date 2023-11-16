@@ -5,6 +5,7 @@ import { RestauranteCadastroComponent } from './restaurante-cadastro/restaurante
 import { RestauranteEnderecoComponent } from './restaurante-endereco/restaurante-endereco.component';
 import { RestauranteImagemComponent } from './restaurante-imagem/restaurante-imagem.component';
 import { RestauranteFinalizarComponent } from './restaurante-finalizar/restaurante-finalizar.component';
+import { RestauranteEditarRestauranteComponent } from './restaurante-editar-restaurante/restaurante-editar-restaurante.component';
 
 const routes: Routes = [
   {path: "", component: RestauranteListagemComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "endereco", component: RestauranteEnderecoComponent},
   {path: "imagem", component: RestauranteImagemComponent},
   {path: "finalizar", component: RestauranteFinalizarComponent},
+  {path: "editar", component: RestauranteEditarRestauranteComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,74 @@
+<div class="flex flex-col items-center justify-center mt-8 pb-1">
+  <h1 class="text-3xl font-semibold text-gray-600 dark:text-black-400 mb-4 ml-4">
+    Altere seu restaurante
+  </h1>
+</div>
+
+<div class="flex space-x-4 ml-8 mr-8 ">
+  <form class="w-1/2">
+    <div>
+      <label for="nome" class="text-gray-600 dark:text-gray-500">Nome</label>
+      <input type="text" id="nome" name="nome" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+    <div class="mt-4">
+      <label for="imagem1" class="h-50 flex flex-col items-center justify-center w-full h-64 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-500 dark:bg-gray-200 dark:hover:border-gray-500 dark:hover:bg-gray-400 transition duration-200">
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+          <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+          </svg>
+          <p class="mb-2 text-sm text-gray-500 dark:text-gray-600"><span class="font-semibold">Click para carregar</span> ou arraste e solte</p>
+          <p class="text-xs text-gray-500 dark:text-gray-600">SVG, PNG, JPG, or GIF </p>
+        </div>
+        <input id="imagem1" type="file" class="hidden" />
+      </label>
+    </div>
+  </form>
+
+  <form class="w-1/2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="pais" class="text-gray-600 dark:text-gray-500">CPNJ</label>
+        <input type="text" id="pais" name="pais" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      </div>
+      <div>
+        <label for="cidade" class="text-gray-600 dark:text-gray-500">Cidade</label>
+        <input type="text" id="cidade" name="cidade" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      </div>
+    </div>
+    <!-- Outros campos do formulário -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="estado" class="text-gray-600 dark:text-gray-500">Estado</label>
+        <input type="text" id="estado" name="estado" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      </div>
+      <div>
+        <label for="cep" class="text-gray-600 dark:text-gray-500">CEP</label>
+        <input type="text" id="cep" name="cep" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      </div>
+    </div>
+    <div>
+      <label for="rua" class="text-gray-600 dark:text-gray-500">Rua</label>
+      <input type="text" id="rua" name="rua" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="bairro" class="text-gray-600 dark:text-gray-500">Bairro</label>
+        <input type="text" id="bairro" name="bairro" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      </div>
+      <div>
+        <label for="numero" class="text-gray-600 dark:text-gray-500">Número</label>
+        <input type="number" id="numero" name="numero" class="w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="flex space-x-4 ml-8 mr-8 mt-4 h-11">
+  <button type="text" id="nome" name="nome" class="w-full bg-gray-400 text-white font-bold p-2 rounded-md hover:bg-gray-700 transition duration-200">
+    Salvar
+  </button>
+</div>
+
+
+
+
