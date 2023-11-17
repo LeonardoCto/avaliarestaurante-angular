@@ -7,8 +7,7 @@ import { RestaurantesModule } from './restaurantes/restaurantes.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosModule } from './usuarios/usuarios.module';
 
-
-
+  
 @NgModule({
   declarations: [
     AppComponent,

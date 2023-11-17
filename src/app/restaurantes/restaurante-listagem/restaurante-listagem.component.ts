@@ -13,8 +13,10 @@ export class RestauranteListagemComponent implements OnInit{
 
   public restaurantes: Array<Restaurante> = new Array();
 
+
   ngOnInit(): void {
     this.buscarRestaurantes();
+
 }
 
 buscarRestaurantes(){

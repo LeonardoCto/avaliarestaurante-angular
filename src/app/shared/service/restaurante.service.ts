@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Restaurante } from '../model/Restaurante';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Restaurante } from '../model/Restaurante';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,15 @@ export class RestauranteService {
     return this.httpClient.post<Restaurante>(this.API, restaurante);
   }
 
-
   listarTodos(): Observable<Array<Restaurante>> {
     return this.httpClient.get<Array<Restaurante>>(this.API);
   }
 
+  listarPorIdUsuario(id: number): Observable<Array<Restaurante>> {
+    return this.httpClient.get<Array<Restaurante>>(`${this.API}/${id}`);
+  }
+
+  buscarRestaurantePeloId(id: number): Observable<Restaurante> {
+    return this.httpClient.get<Restaurante>(`${this.API}/buscar/${id}`);
+  }
 }
-
-
