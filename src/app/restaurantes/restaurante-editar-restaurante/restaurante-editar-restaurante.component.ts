@@ -21,6 +21,8 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
   bairro: String;
   numero: number;
 
+  restaurante: Restaurante = new Restaurante();
+
   private subscription: Subscription;
 
   constructor(
@@ -52,6 +54,26 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
           this.numero = restaurante.endereco.numero;
         });
     }
+  }
+
+
+  atualizarRestaurante(): void {
+    const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
+
+      this.restaurante.cnpj = this.cnpj;
+      this.restaurante.nome = this.nome;
+
+
+      this.restauranteService.atualizar(this.restaurante, idRestaurante!)
+        .subscribe(
+          restauranteAtualizado => {
+            console.log('Restaurante atualizado:', restauranteAtualizado);
+          },
+          error => {
+            console.error('Erro ao atualizar restaurante:', error);
+          }
+        );
+
   }
 
   ngOnDestroy() {

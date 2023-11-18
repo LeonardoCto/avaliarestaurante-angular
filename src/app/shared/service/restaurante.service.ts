@@ -28,4 +28,8 @@ export class RestauranteService {
   buscarRestaurantePeloId(id: number): Observable<Restaurante> {
     return this.httpClient.get<Restaurante>(`${this.API}/buscar/${id}`);
   }
+
+  atualizar(restaurante: Restaurante, id: number): Observable<Restaurante> {
+    return this.httpClient.put<Restaurante>(`${this.API}/${id}`, restaurante);
+  }
 }
