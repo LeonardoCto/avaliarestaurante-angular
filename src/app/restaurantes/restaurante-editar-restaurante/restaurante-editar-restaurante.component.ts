@@ -4,6 +4,9 @@ import { Subscription } from 'rxjs';
 import { RestauranteService } from 'src/app/shared/service/restaurante.service';
 import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/service/dados-compartilhados-editar-restaurante.service';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
+import { AuthServiceService } from 'src/app/shared/service/auth-service.service';
+import { Pessoa } from 'src/app/shared/model/Pessoa';
+import { Endereco } from 'src/app/shared/model/Endereco';
 
 @Component({
   selector: 'app-restaurante-editar-restaurante',
@@ -22,13 +25,16 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
   numero: number;
 
   restaurante: Restaurante = new Restaurante();
+  pessoaAssociada : Pessoa = new Pessoa();
+  enderecoAssociado : Endereco = new Endereco();
 
   private subscription: Subscription;
 
   constructor(
     private router: Router,
     private dadosCompartilhadosEditarRestauranteService: DadosCompartilhadosEditarRestauranteService,
-    private restauranteService: RestauranteService
+    private restauranteService: RestauranteService,
+    private authService : AuthServiceService
   ) {}
 
   ngOnInit(): void {
@@ -60,8 +66,11 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
   atualizarRestaurante(): void {
     const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
 
+    this.pessoaAssociada = this.authService.getPessoa();
+
       this.restaurante.cnpj = this.cnpj;
       this.restaurante.nome = this.nome;
+      this.restaurante.pessoa = this.pessoaAssociada;
 
 
       this.restauranteService.atualizar(this.restaurante, idRestaurante!)
