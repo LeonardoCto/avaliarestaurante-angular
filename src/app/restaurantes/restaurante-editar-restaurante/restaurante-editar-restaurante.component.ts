@@ -1,3 +1,4 @@
+import { DadosCompartilhadosRestauranteService } from './../../shared/service/dados-compartilhados-restaurante.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,6 +16,7 @@ import { Endereco } from 'src/app/shared/model/Endereco';
 })
 export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy {
 
+  idRestaurante: number;
   nome: String;
   cnpj: String;
   cidade: String;
@@ -23,18 +25,41 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
   rua: String;
   bairro: String;
   numero: number;
+  private imagemSelecionada: File | null = null;
 
   restaurante: Restaurante = new Restaurante();
-  pessoaAssociada : Pessoa = new Pessoa();
-  enderecoAssociado : Endereco = new Endereco();
-
   private subscription: Subscription;
+
+
+  selecionarImagem(event: any): void {
+    const files = event.target.files;
+
+    if (files && files.length > 0) {
+      this.imagemSelecionada = files[0];
+
+      this.converterArquivoParaBase64(this.imagemSelecionada!);
+    }
+  }
+
+  private converterArquivoParaBase64(arquivo: File): void {
+    const leitor = new FileReader();
+
+    leitor.onload = (e) => {
+
+      const conteudoBase64 = leitor.result as string;
+
+      this.dadosCompartilhadosRestauranteService.setImagem(conteudoBase64);
+    };
+
+    leitor.readAsDataURL(arquivo);
+  }
 
   constructor(
     private router: Router,
     private dadosCompartilhadosEditarRestauranteService: DadosCompartilhadosEditarRestauranteService,
     private restauranteService: RestauranteService,
-    private authService : AuthServiceService
+    private authService : AuthServiceService,
+    private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +75,8 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
       this.subscription = this.restauranteService.buscarRestaurantePeloId(idRestaurante)
         .subscribe((restaurante: Restaurante) => {
 
+          console.log("id do endereco do restaurante: " + restaurante.endereco.id)
+          this.idRestaurante = restaurante.endereco.id;
           this.nome = restaurante.nome;
           this.cnpj = restaurante.cnpj;
           this.cidade = restaurante.endereco.cidade;
@@ -61,16 +88,28 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
         });
     }
   }
-
-
   atualizarRestaurante(): void {
-    const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
 
-    this.pessoaAssociada = this.authService.getPessoa();
+    //montar objeto restaurante completo e mandar para o servidor.
+
+      const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
+      const pessoaAssociada = this.authService.getPessoa();
+      const enderecoAssociado : Endereco = new Endereco();
+
+      enderecoAssociado.id = this.idRestaurante;
+      enderecoAssociado.cidade = this.cidade;
+      enderecoAssociado.cep = this.cep;
+      enderecoAssociado.bairro = this.bairro;
+      enderecoAssociado.estado = this.estado;
+      enderecoAssociado.numero = this.numero;
+      enderecoAssociado.rua = this.rua;
 
       this.restaurante.cnpj = this.cnpj;
       this.restaurante.nome = this.nome;
-      this.restaurante.pessoa = this.pessoaAssociada;
+      this.restaurante.pessoa = pessoaAssociada;
+      this.restaurante.endereco = enderecoAssociado;
+      this.restaurante.imagem = this.dadosCompartilhadosRestauranteService.getImagem();
+
 
 
       this.restauranteService.atualizar(this.restaurante, idRestaurante!)
@@ -84,7 +123,6 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
         );
 
   }
-
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();

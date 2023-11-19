@@ -19,7 +19,7 @@
           <p class="mb-2 text-sm text-gray-500 dark:text-gray-600"><span class="font-semibold">Click para carregar</span> ou arraste e solte</p>
           <p class="text-xs text-gray-500 dark:text-gray-600">SVG, PNG, JPG, or GIF </p>
         </div>
-        <input id="imagem1" type="file" class="hidden" />
+        <input id="imagem1" type="file" class="hidden" (change)="selecionarImagem($event)"/>
       </label>
     </div>
   </form>
