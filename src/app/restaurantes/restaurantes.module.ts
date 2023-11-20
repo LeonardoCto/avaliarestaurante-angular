@@ -9,6 +9,7 @@ import { RestauranteImagemComponent } from './restaurante-imagem/restaurante-ima
 import { RestauranteFinalizarComponent } from './restaurante-finalizar/restaurante-finalizar.component';
 import { RestauranteEditarRestauranteComponent } from './restaurante-editar-restaurante/restaurante-editar-restaurante.component';
 import { RestauranteListarEdicaoComponent } from './restaurante-listar-edicao/restaurante-listar-edicao.component';
+import { RestauranteVisualizarComponent } from './restaurante-visualizar/restaurante-visualizar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RestauranteListarEdicaoComponent } from './restaurante-listar-edicao/re
     RestauranteImagemComponent,
     RestauranteFinalizarComponent,
     RestauranteEditarRestauranteComponent,
-    RestauranteListarEdicaoComponent
+    RestauranteListarEdicaoComponent,
+    RestauranteVisualizarComponent
   ],
   imports: [
     CommonModule,

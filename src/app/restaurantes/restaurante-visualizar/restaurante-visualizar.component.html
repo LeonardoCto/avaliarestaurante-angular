@@ -1,0 +1,5 @@
+<div *ngIf="restaurante" class="text-center mt-8">
+  <img [src]="restaurante.imagem" alt="{{ restaurante.nome }}" class="mx-auto rounded-lg w-64 h-64 object-cover mb-4" />
+
+  <h2 class="text-2xl font-semibold">{{ restaurante.nome }}</h2>
+</div>

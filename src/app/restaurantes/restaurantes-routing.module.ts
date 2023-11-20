@@ -7,6 +7,7 @@ import { RestauranteImagemComponent } from './restaurante-imagem/restaurante-ima
 import { RestauranteFinalizarComponent } from './restaurante-finalizar/restaurante-finalizar.component';
 import { RestauranteEditarRestauranteComponent } from './restaurante-editar-restaurante/restaurante-editar-restaurante.component';
 import { RestauranteListarEdicaoComponent } from './restaurante-listar-edicao/restaurante-listar-edicao.component';
+import { RestauranteVisualizarComponent } from './restaurante-visualizar/restaurante-visualizar.component';
 
 const routes: Routes = [
   {path: "", component: RestauranteListagemComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "finalizar", component: RestauranteFinalizarComponent},
   {path: "editar", component: RestauranteEditarRestauranteComponent},
   {path: "lista", component: RestauranteListarEdicaoComponent},
+  {path: "detalhe", component: RestauranteVisualizarComponent},
 
 ];
 

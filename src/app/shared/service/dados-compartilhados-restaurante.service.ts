@@ -12,8 +12,21 @@ export class DadosCompartilhadosRestauranteService {
   private restaurante: Restaurante = new Restaurante();
   private endereco: Endereco = new Endereco();
   private cnpjRestaurante: Restaurante = new Restaurante();
-
   private imagemRestaurante: Restaurante = new Restaurante();
+
+  private idRestauranteDetalhe : Restaurante = new Restaurante();
+  private readonly ID_RESTAURANTE_DETALHE_KEY = 'idRestauranteDetalhe';
+
+  setIdRestauranteDetalhe(id: number): void {
+    this.idRestauranteDetalhe.id = id;
+    sessionStorage.setItem(this.ID_RESTAURANTE_DETALHE_KEY, id.toString());
+  }
+
+  getIdRestauranteDetalhe(): number {
+    const storedId = sessionStorage.getItem(this.ID_RESTAURANTE_DETALHE_KEY);
+    return storedId ? +storedId : 0;
+  }
+
 
   setImagem(imagem: String): void {
     this.imagemRestaurante.imagem = imagem;
