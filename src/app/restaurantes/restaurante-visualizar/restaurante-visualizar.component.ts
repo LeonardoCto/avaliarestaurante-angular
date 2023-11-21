@@ -7,6 +7,7 @@ import { DadosCompartilhadosRestauranteService } from './../../shared/service/da
 import { Component, OnInit } from '@angular/core';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
 import { Pessoa } from 'src/app/shared/model/Pessoa';
+import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/service/dados-compartilhados-editar-restaurante.service';
 
 @Component({
   selector: 'app-restaurante-visualizar',
@@ -18,20 +19,39 @@ export class RestauranteVisualizarComponent implements OnInit{
   constructor(private restauranteService : RestauranteService,
   private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService,
   private dadosCompartilhadosAvaliacaoService : DadosCompartilhadosAvaliacaoService,
-  private avaliacaoServiceService : AvaliacaoServiceService,
-  private authServiceService : AuthServiceService
+  private avaliacaoService : AvaliacaoServiceService,
+  private authServiceService : AuthServiceService,
+  private dadosCompartilhadosEditarRestauranteService : DadosCompartilhadosEditarRestauranteService
 
   ){}
+
+  public avaliacoes: Array<Avaliacao> = new Array();
 
   restaurante: Restaurante;
   pessoa: Pessoa;
   comentario: String;
   nota: number;
 
+  private idUsuarioLogado = this.authServiceService.getUserId();
+
 ngOnInit(): void {
+  this.buscarAvaliacoesDoRestaurante();
   this.buscarRestaurantePeloId();
   console.log("Pessoa:", JSON.stringify(this.authServiceService.getPessoa()));
+}
 
+buscarAvaliacoesDoRestaurante(){
+
+  const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
+
+  this.avaliacaoService.buscarAvaliacoesPorIdRestaurante(idDoRestaurante!).subscribe(
+    resultado => {
+      this.avaliacoes = resultado;
+    },
+    erro => {
+      console.log('Erro ao buscar avaliacoes', erro);
+    }
+  );
 }
 
 buscarRestaurantePeloId() {
@@ -63,7 +83,7 @@ salvarAvaliacao(){
   avaliacao.pessoa = pessoa;
   avaliacao.restaurante = restaurante;
 
-  this.avaliacaoServiceService.salvar(avaliacao).subscribe(
+  this.avaliacaoService.salvar(avaliacao).subscribe(
     (avaliacaoSalva) => {
 
       console.log('Avaliacao salva com sucesso: ', avaliacaoSalva);
@@ -75,4 +95,19 @@ salvarAvaliacao(){
   );
 }
 
+excluirAvaliacao(avaliacao: Avaliacao): void {
+  const pessoaAutenticada = this.authServiceService.getPessoa();
+  console.log("Pessoa:", JSON.stringify(pessoaAutenticada));
+
+  console.log("Id da pessoa logada: " + pessoaAutenticada);
+
+  this.avaliacaoService.excluir(avaliacao, pessoaAutenticada!).subscribe(
+    () => {
+      console.log('Avaliação excluída com sucesso.');
+    },
+    (error) => {
+      console.error('Erro ao excluir avaliação:', error);
+    }
+  );
+}
 }

@@ -3,7 +3,6 @@
 
   <h2 class="text-2xl font-semibold">{{ restaurante.nome }}</h2>
 
-  <!-- Adicionando um campo de avaliação -->
   <textarea
     [(ngModel)]="comentario"
     class="w-full mt-4 p-2 border rounded-md"
@@ -13,4 +12,23 @@
   <button (click)="salvarAvaliacao()" class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
     Salvar
   </button>
+  <button  class="ml-4 mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
+    Excluir
+  </button>
+</div>
+
+<div class="mt-2 ml-8 mr-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+  <div
+    class="bg-white ml-4 rounded-lg overflow-hidden mb-2"
+    *ngFor="let avaliacao of avaliacoes; let i = index"
+  >
+    <div class="p-1">
+      <h3 class="text-xl font-semibold">{{ avaliacao.comentario }}</h3>
+      <p class="text-gray-700">{{ avaliacao.pessoa.nome }}</p>
+    </div>
+
+    <button (click)="excluirAvaliacao(avaliacao)" class="bg-red-500 text-white p-2 rounded-md cursor-pointer">
+      Excluir Avaliação
+    </button>
+  </div>
 </div>

@@ -1,3 +1,4 @@
+import { DadosCompartilhadosEditarRestauranteService } from './../../shared/service/dados-compartilhados-editar-restaurante.service';
 import { DadosCompartilhadosRestauranteService } from 'src/app/shared/service/dados-compartilhados-restaurante.service';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
 import { RestauranteService } from './../../shared/service/restaurante.service';
@@ -11,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
 export class RestauranteListagemComponent implements OnInit{
 
   constructor(private restauranteService : RestauranteService,
-  private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService) { }
+  private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService,
+  private dadosCompartilhadosEditarRestauranteService : DadosCompartilhadosEditarRestauranteService
+
+  ) { }
 
   public restaurantes: Array<Restaurante> = new Array();
 
@@ -33,6 +37,8 @@ export class RestauranteListagemComponent implements OnInit{
 }
 
 selecionarRestaurante(id: number): void {
+
+  this.dadosCompartilhadosEditarRestauranteService.setId(id);
 
   this.idRestauranteSelecionado = id;
 
