@@ -1,0 +1,14 @@
+// Defina suas variáveis de sombra
+$shadows: (
+  small: 0 2px 4px rgba(0, 0, 0, 0.1),
+  medium: 0 4px 8px rgba(0, 0, 0, 0.1),
+  large: 0 8px 16px rgba(0, 0, 0, 0.1),
+  // Adicione outras configurações de sombra conforme necessário
+);
+
+// Use a variável em seus estilos
+.my-container {
+  width: 1000px;
+  height: 100%; // Se você quer que a div ocupe toda a altura disponível
+  margin-right: 0;
+}

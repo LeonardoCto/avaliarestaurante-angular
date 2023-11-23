@@ -1,6 +1,8 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
 import { RestaurantesRoutingModule } from './restaurantes-routing.module';
 import { RestauranteListagemComponent } from './restaurante-listagem/restaurante-listagem.component';
 import { RestauranteCadastroComponent } from './restaurante-cadastro/restaurante-cadastro.component';
@@ -10,6 +12,7 @@ import { RestauranteFinalizarComponent } from './restaurante-finalizar/restauran
 import { RestauranteEditarRestauranteComponent } from './restaurante-editar-restaurante/restaurante-editar-restaurante.component';
 import { RestauranteListarEdicaoComponent } from './restaurante-listar-edicao/restaurante-listar-edicao.component';
 import { RestauranteVisualizarComponent } from './restaurante-visualizar/restaurante-visualizar.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { RestauranteVisualizarComponent } from './restaurante-visualizar/restaur
   imports: [
     CommonModule,
     FormsModule,
-    RestaurantesRoutingModule
+    RestaurantesRoutingModule,
+    RatingModule
   ]
 })
-export class RestaurantesModule { }
+export class RestaurantesModule {
+}

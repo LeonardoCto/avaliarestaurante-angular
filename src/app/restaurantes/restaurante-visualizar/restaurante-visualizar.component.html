@@ -1,34 +1,68 @@
-<div *ngIf="restaurante" class="text-center mt-8">
-  <img [src]="restaurante.imagem" alt="{{ restaurante.nome }}" class="mx-auto rounded-lg h-96" />
 
-  <h2 class="text-2xl font-semibold">{{ restaurante.nome }}</h2>
-
-  <textarea
-    [(ngModel)]="comentario"
-    class="w-full mt-4 p-2 border rounded-md"
-    placeholder="Digite sua avaliação..."
-  ></textarea>
-
-  <button (click)="salvarAvaliacao()" class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
-    Salvar
-  </button>
-  <button  class="ml-4 mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
-    Excluir
-  </button>
+<div *ngIf="restaurante" class="text-center mt-8 ml-4 mr-2">
+  <div class="flex flex-col lg:flex-row items-start">
+    <div class="mr-12">
+      <img [src]="restaurante.imagem" alt="{{ restaurante.nome }}" class="rounded-lg h-96 ml-8 shadow-lg" />
+    </div>
+    <div style="width: 1000px;" class="h-full mr-0">
+      <div class="text-2xl font-semibold text-gray-600 dark:text-black-400 rounded-lg h-96 bg-white ml-4 shadow-md mr-8 flex flex-col justify-center">
+        <h2 class="text-2xl font-bold text-gray-600 dark:text-black-400 ml-4 mt-8">
+        </h2>
+        <p class="text-3xl">
+          {{ restaurante.nome }}
+        </p>
+        <p class="text-gray-700 ml-4 mb-2">
+          {{ restaurante.endereco.cidade }}, {{ restaurante.endereco.estado }}
+        </p>
+        <p class="text-gray-700 ml-4 mb-2">
+          {{ restaurante.endereco.rua }}, {{ restaurante.endereco.numero }}
+        </p>
+        <p class="text-gray-700 ml-4 mb-2">
+          {{ restaurante.endereco.bairro }}, {{ restaurante.endereco.cep }}
+        </p>
+      </div>
+    </div>
 </div>
 
-<div class="mt-2 ml-8 mr-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-  <div
-    class="bg-white ml-4 rounded-lg overflow-hidden mb-2"
-    *ngFor="let avaliacao of avaliacoes; let i = index"
-  >
-    <div class="p-1">
-      <h3 class="text-xl font-semibold">{{ avaliacao.comentario }}</h3>
-      <p class="text-gray-700">{{ avaliacao.pessoa.nome }}</p>
+<div class="lg:flex lg:space-x-16 mr-8">
+    <div class="lg:w-1/2">
+      <textarea
+        [(ngModel)]="comentario"
+        class="p-3  rounded-md w-full h-40 mt-6 ml-8 shadow-md"
+        placeholder="Deixe sua avaliação..."></textarea>
     </div>
 
-    <button (click)="excluirAvaliacao(avaliacao)" class="bg-red-500 text-white p-2 rounded-md cursor-pointer">
-      Excluir Avaliação
+    <div class="lg:w-1/2  h-40 mt-6 bg-white rounded-lg overflow-hidden mb-4 shadow-md">
+      <h1 class="text-2xl font-semibold text-gray-600 dark:text-black-400 mb-4 ml-4 mt-8">
+       Avalie este restaurante
+      </h1>
+      <div class="mt-6">
+        <p-rating [(ngModel)]="valor" [cancel]="false"></p-rating>
+    </div>
+    </div>
+  </div>
+  <div class="mr-8 ml-8">
+    <button (click)="salvarAvaliacao()"
+        class="mt-2 ml-0  mr-8 bg-gray-500 hover:bg-gray-600 w-full text-white p-3 rounded-md cursor-pointer">
+        Salvar Avaliação
+      </button>
+    </div>
+</div>
+
+<div class="mt-10 mx-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mr-10 ml-10">
+  <div
+    class="bg-white rounded-lg overflow-hidden mb-4 shadow-xl"
+    *ngFor="let avaliacao of avaliacoes; let i = index">
+    <div class="p-4">
+      <p class="text-gray-700">{{ avaliacao.pessoa.nome }}</p>
+      <h3 class="text-lg font-semibold text-gray-700">{{ avaliacao.comentario }}</h3>
+    </div>
+
+    <button (click)="excluirAvaliacao(avaliacao)" class=" text-black p-2 rounded-md cursor-pointer">
+        <img src="https://i.ibb.co/9WJTSBj/minus-button-1.png" alt="minus-button-1" border="0">
     </button>
+    
   </div>
 </div>
+
+

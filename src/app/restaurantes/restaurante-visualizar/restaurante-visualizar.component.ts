@@ -32,12 +32,15 @@ export class RestauranteVisualizarComponent implements OnInit{
   comentario: String;
   nota: number;
 
+  valor!: number;
+
   private idUsuarioLogado = this.authServiceService.getUserId();
 
 ngOnInit(): void {
   this.buscarAvaliacoesDoRestaurante();
   this.buscarRestaurantePeloId();
   console.log("Pessoa:", JSON.stringify(this.authServiceService.getPessoa()));
+
 }
 
 buscarAvaliacoesDoRestaurante(){
@@ -65,6 +68,7 @@ buscarRestaurantePeloId() {
 }
 
 salvarAvaliacao(){
+  console.log(this.valor)
 
    const avaliacao: Avaliacao = new Avaliacao();
 
