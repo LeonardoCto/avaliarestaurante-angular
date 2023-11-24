@@ -30,9 +30,7 @@ export class RestauranteVisualizarComponent implements OnInit{
   restaurante: Restaurante;
   pessoa: Pessoa;
   comentario: String;
-  nota: number;
-
-  valor!: number;
+  nota!: number;
 
   private idUsuarioLogado = this.authServiceService.getUserId();
 
@@ -68,7 +66,6 @@ buscarRestaurantePeloId() {
 }
 
 salvarAvaliacao(){
-  console.log(this.valor)
 
    const avaliacao: Avaliacao = new Avaliacao();
 

@@ -6,8 +6,8 @@ import { RestauranteService } from 'src/app/shared/service/restaurante.service';
 import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/service/dados-compartilhados-editar-restaurante.service';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
 import { AuthServiceService } from 'src/app/shared/service/auth-service.service';
-import { Pessoa } from 'src/app/shared/model/Pessoa';
 import { Endereco } from 'src/app/shared/model/Endereco';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-restaurante-editar-restaurante',
@@ -90,7 +90,19 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
   }
   atualizarRestaurante(): void {
 
-    //montar objeto restaurante completo e mandar para o servidor.
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
 
       const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
       const pessoaAssociada = this.authService.getPessoa();

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
 import { RestauranteService } from './../../shared/service/restaurante.service';
 import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/service/dados-compartilhados-editar-restaurante.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-restaurante-listar-edicao',
@@ -25,10 +26,31 @@ export class RestauranteListarEdicaoComponent implements OnInit{
 selecionarRestaurante(id: number) {
   this.idSelecionado = id;
   this.dadosCompartilhadosEditarRestauranteService.setId(this.idSelecionado);
-  
+
   const idClicado = this.dadosCompartilhadosEditarRestauranteService.getId();
   console.log('Restaurante selecionado com id:', idClicado);
 }
+
+deletarRestaurante(){
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+    }
+  });
+}
+
 
 buscarRestaurantes(){
   const id = this.authServiceService.getUserId();
@@ -43,4 +65,5 @@ buscarRestaurantes(){
     }
   );
 }
+
 }

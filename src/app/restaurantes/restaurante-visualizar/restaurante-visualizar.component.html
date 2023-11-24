@@ -37,7 +37,7 @@
        Avalie este restaurante
       </h1>
       <div class="mt-6">
-        <p-rating [(ngModel)]="valor" [cancel]="false"></p-rating>
+        <p-rating [(ngModel)]="nota" [cancel]="false"></p-rating>
     </div>
     </div>
   </div>
@@ -57,11 +57,13 @@
       <p class="text-gray-700">{{ avaliacao.pessoa.nome }}</p>
       <h3 class="text-lg font-semibold text-gray-700">{{ avaliacao.comentario }}</h3>
     </div>
-
+    <div class="mt-6">
+      <p-rating  [(ngModel)]="nota" [cancel]="false"></p-rating>
+  </div>
     <button (click)="excluirAvaliacao(avaliacao)" class=" text-black p-2 rounded-md cursor-pointer">
         <img src="https://i.ibb.co/9WJTSBj/minus-button-1.png" alt="minus-button-1" border="0">
     </button>
-    
+
   </div>
 </div>
 

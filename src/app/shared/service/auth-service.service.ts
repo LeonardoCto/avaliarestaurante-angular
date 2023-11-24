@@ -26,10 +26,15 @@ export class AuthServiceService {
     return this.pessoa;
   }
 
-  setUserId(userId: number): void {
-    this.userId = userId;
+setUserId(userId: number | null): void {
+  this.userId = userId;
+  if (userId === null) {
+    sessionStorage.removeItem(this.userIdKey);
+  } else {
     sessionStorage.setItem(this.userIdKey, userId.toString());
   }
+}
+
 
   getUserId(): number | null {
     return this.userId;

@@ -7,7 +7,7 @@ import { RestaurantesModule } from './restaurantes/restaurantes.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { RatingModule } from "primeng/rating";
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { RatingModule } from "primeng/rating";
     RestaurantesModule,
     HttpClientModule,
     UsuariosModule,
-    RatingModule
+    RatingModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
