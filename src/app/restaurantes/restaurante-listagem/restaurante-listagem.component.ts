@@ -61,8 +61,35 @@ buscarRestaurantes(){
   );
 }
 
-buscarComSeletor() {
-  this.restauranteService.buscarComSeletor(this.seletor).subscribe(
+async exibirModalDeFiltros() {
+  const { value: formValues } = await Swal.fire({
+    title: 'Filtros de Busca',
+    html:
+      '<div>Preencha os filtros que você desejar para encontrar um restaurante:</div>' +
+      '<input id="nome" class="swal2-input" placeholder="Nome">' +
+      '<input id="rua" class="swal2-input" placeholder="Rua">' +
+      '<input id="cep" class="swal2-input" placeholder="CEP">' +
+      '<input id="bairro" class="swal2-input" placeholder="Bairro">' +
+      '<input id="cidade" class="swal2-input" placeholder="Cidade">',
+    focusConfirm: false,
+    preConfirm: () => {
+      return {
+        nome: (document.getElementById('nome') as HTMLInputElement).value,
+        rua: (document.getElementById('rua') as HTMLInputElement).value,
+        cep: (document.getElementById('cep') as HTMLInputElement).value,
+        bairro: (document.getElementById('bairro') as HTMLInputElement).value,
+        cidade: (document.getElementById('cidade') as HTMLInputElement).value,
+      };
+    },
+  });
+
+  if (formValues) {
+    this.buscarComSeletor(formValues);
+  }
+}
+
+buscarComSeletor(seletor: SeletorRestaurante) {
+  this.restauranteService.buscarComSeletor(seletor).subscribe(
     (resultado) => {
       this.restaurantes = resultado;
       console.log('Restaurantes com filtro:', resultado);

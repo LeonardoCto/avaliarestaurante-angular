@@ -2,12 +2,12 @@
 <div class="flex justify-center items-center mt-4 mb-4">
   <div class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
     <img width="32" height="32" src="https://img.icons8.com/material-rounded/24/marker.png" alt="marker"/>
-    <input (keyup.enter)="buscarComSeletor()" [(ngModel)]="seletor.rua" class="ml-2 font-segoe-ui border-none focus:outline-none" placeholder="Rua">
+    <input  [(ngModel)]="seletor.rua" class="ml-2 font-segoe-ui border-none focus:outline-none" placeholder="Rua">
   </div>
 
   <button class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
     <img width="32" height="32" src="https://img.icons8.com/ios-glyphs/30/star--v1.png" alt="star--v1"/>
-    <p class="ml-2 font-segoe-ui">Menor avaliação</p>
+    <p (click)="exibirModalDeFiltros()" class="ml-2 font-segoe-ui">Menor avaliação</p>
   </button>
   <button class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
     <img width="32" height="32" src="https://img.icons8.com/windows/32/five-of-five.png" alt="five-of-five"/>
