@@ -12,7 +12,7 @@ import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/serv
 @Component({
   selector: 'app-restaurante-visualizar',
   templateUrl: './restaurante-visualizar.component.html',
-  styleUrls: ['./restaurante-visualizar.component.scss']
+  styleUrls: ['./restaurante-visualizar.component.scss'],
 })
 export class RestauranteVisualizarComponent implements OnInit{
 
@@ -32,12 +32,14 @@ export class RestauranteVisualizarComponent implements OnInit{
   comentario: String;
   nota!: number;
   notaDoUsuario!: number;
+  mediaAvaliacoes: number;
 
   private idUsuarioLogado = this.authServiceService.getUserId();
 
 ngOnInit(): void {
   this.buscarAvaliacoesDoRestaurante();
   this.buscarRestaurantePeloId();
+  this.calcularMediaAvaliacoes();
   console.log("Pessoa:", JSON.stringify(this.authServiceService.getPessoa()));
 }
 
@@ -118,4 +120,23 @@ excluirAvaliacao(avaliacao: Avaliacao): void {
     }
   );
 }
+
+calcularMediaAvaliacoes() {
+  const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
+  console.log('ID = ' + idDoRestaurante);
+  
+  if (idDoRestaurante != null) {
+    this.restauranteService.calcularMediaAvaliacoes(idDoRestaurante).subscribe(
+      media => {
+        this.mediaAvaliacoes = media;
+        console.log('Media = ' + this.mediaAvaliacoes);
+      },
+      erro => {
+        console.error('Erro ao buscar média de avaliações', erro);
+      }
+    );
+  }
+}
+
+
 }
