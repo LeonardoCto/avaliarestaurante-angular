@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Restaurante } from '../model/Restaurante';
+import { SeletorRestaurante } from '../model/SeletorRestaurante';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,9 @@ export class RestauranteService {
   atualizar(restaurante: Restaurante, id: number): Observable<Restaurante> {
     return this.httpClient.put<Restaurante>(`${this.API}/${id}`, restaurante);
   }
+
+  buscarComSeletor(seletor: SeletorRestaurante): Observable<Restaurante[]>{
+    return this.httpClient.post<Array<Restaurante>>(`${this.API}/filtro`, seletor);
+  }
+
 }
