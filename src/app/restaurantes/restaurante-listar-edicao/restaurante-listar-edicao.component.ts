@@ -31,26 +31,38 @@ selecionarRestaurante(id: number) {
   console.log('Restaurante selecionado com id:', idClicado);
 }
 
-deletarRestaurante(){
+deletarRestaurante(id: number) {
   Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
+    title: "Tem certeza disso?",
+    text: "Você não poderá desfazer isso futuramente!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Sim, deletar!",
+    cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
+      this.idSelecionado = id;
+
+      this.restauranteService.deletarRestaurante(this.idSelecionado).subscribe(
+        () => {
+          console.log('Restaurante deletado com sucesso');
+          this.restaurantes = this.restaurantes.filter(restaurante => restaurante.id !== this.idSelecionado);
+        },
+        erro => {
+          console.log('Erro ao deletar restaurante', erro);
+        }
+      );
+
       Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
+        title: "Restaurante deletado!",
+        text: "voltar para a lista.",
         icon: "success"
       });
     }
   });
 }
-
 
 buscarRestaurantes(){
   const id = this.authServiceService.getUserId();

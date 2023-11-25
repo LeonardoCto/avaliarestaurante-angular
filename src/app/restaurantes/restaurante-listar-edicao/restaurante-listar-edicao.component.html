@@ -6,8 +6,8 @@
       <p class="text-white">{{ restaurante.pessoa.nome }}</p>
     </div>
 
-    <div (click)="deletarRestaurante()" class="absolute top-0 right-0 flex space-x-2 p-2 mt-4 mr-4" (click)="selecionarRestaurante(restaurante.id)">
-      <button class="bg-gray-500 text-white rounded-lg p-2 hover:bg-gray-700 transition duration-200" >Excluir</button>
+    <div class="absolute top-0 right-0 flex space-x-2 p-2 mt-4 mr-4" (click)="selecionarRestaurante(restaurante.id)">
+      <button (click)="deletarRestaurante(restaurante.id)" class="bg-gray-500 text-white rounded-lg p-2 hover:bg-gray-700 transition duration-200" >Excluir</button>
       <a href="/editar" >
         <button class="bg-gray-500 text-white rounded-lg p-2 hover:bg-gray-700 transition duration-200">Editar</button>
       </a>

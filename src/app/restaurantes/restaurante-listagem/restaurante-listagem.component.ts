@@ -17,13 +17,11 @@ export class RestauranteListagemComponent implements OnInit{
   constructor(private restauranteService : RestauranteService,
   private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService,
   private dadosCompartilhadosEditarRestauranteService : DadosCompartilhadosEditarRestauranteService
-  
+
   ) { }
 
   public restaurantes: Array<Restaurante> = new Array();
-
   hoveredIndex: number | null = null;
-
   idRestauranteSelecionado: number | null = null;
 
   onMouseEnter(index: number) {
@@ -42,11 +40,8 @@ export class RestauranteListagemComponent implements OnInit{
 selecionarRestaurante(id: number): void {
 
   this.dadosCompartilhadosEditarRestauranteService.setId(id);
-
   this.idRestauranteSelecionado = id;
-
   this.dadosCompartilhadosRestauranteService.setIdRestauranteDetalhe(this.idRestauranteSelecionado);
-
   console.log("id setado: " + this.idRestauranteSelecionado)
 }
 

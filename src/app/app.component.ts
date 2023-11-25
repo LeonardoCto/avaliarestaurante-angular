@@ -19,7 +19,6 @@ export class AppComponent {
   }
 
   sair() {
-    // Exibir o SweetAlert para confirmar a saída
     Swal.fire({
       title: 'Deseja sair?',
       text: 'Você será desconectado da sua conta.',

@@ -38,4 +38,8 @@ export class RestauranteService {
     return this.httpClient.post<Array<Restaurante>>(`${this.API}/filtro`, seletor);
   }
 
+  deletarRestaurante(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.API}/${id}`);
+  }
+
 }
