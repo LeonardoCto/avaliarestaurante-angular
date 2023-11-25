@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class RestauranteListagemComponent implements OnInit{
   seletor: SeletorRestaurante = new SeletorRestaurante();
+  mediaAvaliacoes: number | null = null;
 
   constructor(private restauranteService : RestauranteService,
   private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService,
@@ -49,11 +50,25 @@ buscarRestaurantes(){
   this.restauranteService.listarTodos().subscribe(
     resultado => {
       this.restaurantes = resultado;
+      this.carregarMediasAvaliacoes();
     },
     erro => {
       console.log('Erro ao buscar restaurantes', erro);
     }
   );
+}
+
+carregarMediasAvaliacoes() {
+  this.restaurantes.forEach((restaurante) => {
+    this.restauranteService.calcularMediaAvaliacoes(restaurante.id).subscribe(
+      (media) => {
+        restaurante.mediaAvaliacoes = media;
+      },
+      (erro) => {
+        console.error('Erro ao buscar média de avaliações', erro);
+      }
+    );
+  });
 }
 
 async exibirModalDeFiltros() {
