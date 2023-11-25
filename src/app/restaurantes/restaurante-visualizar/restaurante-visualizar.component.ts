@@ -31,6 +31,7 @@ export class RestauranteVisualizarComponent implements OnInit{
   pessoa: Pessoa;
   comentario: String;
   nota!: number;
+  notaDoUsuario!: number;
 
   private idUsuarioLogado = this.authServiceService.getUserId();
 
@@ -38,16 +39,22 @@ ngOnInit(): void {
   this.buscarAvaliacoesDoRestaurante();
   this.buscarRestaurantePeloId();
   console.log("Pessoa:", JSON.stringify(this.authServiceService.getPessoa()));
-
 }
 
-buscarAvaliacoesDoRestaurante(){
+onRatingChange(event: any, index: number) {
+  this.avaliacoes[index].nota = event.value;
+}
 
+
+buscarAvaliacoesDoRestaurante() {
   const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
-
   this.avaliacaoService.buscarAvaliacoesPorIdRestaurante(idDoRestaurante!).subscribe(
     resultado => {
       this.avaliacoes = resultado;
+
+      for (const avaliacao of this.avaliacoes) {
+        this.notaDoUsuario = avaliacao.nota;
+      }
     },
     erro => {
       console.log('Erro ao buscar avaliacoes', erro);

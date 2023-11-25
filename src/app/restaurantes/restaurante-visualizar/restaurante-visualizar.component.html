@@ -43,7 +43,7 @@
   </div>
   <div class="mr-8 ml-8">
     <button (click)="salvarAvaliacao()"
-        class="mt-2 ml-0  mr-8 bg-gray-500 hover:bg-gray-600 w-full text-white p-3 rounded-md cursor-pointer">
+        class="mt-2 ml-0  mr-8 bg-gray-400 hover:bg-gray-500 w-full text-white p-3 rounded-md cursor-pointer">
         Salvar Avaliação
       </button>
     </div>
@@ -51,20 +51,21 @@
 
 <div class="mt-10 mx-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mr-10 ml-10">
   <div
-    class="bg-white rounded-lg overflow-hidden mb-4 shadow-xl"
+    class="bg-white rounded-lg overflow-hidden mb-4 shadow-xl relative"
     *ngFor="let avaliacao of avaliacoes; let i = index">
     <div class="p-4">
-      <p class="text-gray-700">{{ avaliacao.pessoa.nome }}</p>
-      <h3 class="text-lg font-semibold text-gray-700">{{ avaliacao.comentario }}</h3>
+      <p class="text-gray-700 font-bold">{{ avaliacao.pessoa.nome }}</p>
+      <h3 class="text-lg text-gray-700">{{ avaliacao.comentario }}</h3>
     </div>
-    <div class="mt-6">
-      <p-rating  [(ngModel)]="nota" [cancel]="false"></p-rating>
-  </div>
-    <button (click)="excluirAvaliacao(avaliacao)" class=" text-black p-2 rounded-md cursor-pointer">
-        <img src="https://i.ibb.co/9WJTSBj/minus-button-1.png" alt="minus-button-1" border="0">
+    <div class="absolute bottom-0 left-0 ml-2 mb-2">
+      <p-rating [cancel]="false" [disabled]="true" [ngModel]="avaliacao.nota" (onRateChange)="onRatingChange($event, i)"></p-rating>
+    </div>
+    <button (click)="excluirAvaliacao(avaliacao)" class="ml-72 text-black p-2 rounded-md cursor-pointer">
+      <img src="https://i.ibb.co/9WJTSBj/minus-button-1.png" alt="minus-button-1" border="0" class="absolute bottom-0 right-0 mr-2 mb-2">
     </button>
-
   </div>
 </div>
+
+
 
 

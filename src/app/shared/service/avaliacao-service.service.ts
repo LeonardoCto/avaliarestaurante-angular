@@ -26,4 +26,8 @@ export class AvaliacaoServiceService {
   buscarAvaliacoesPorIdRestaurante(idRestaurante: number): Observable<Avaliacao[]> {
     return this.httpClient.get<Avaliacao[]>(`${this.API}/${idRestaurante}`);
   }
+
+  buscarTodasNotas(idRestaurante: number): Observable<number[]> {
+    return this.httpClient.get<number[]>(`${this.API}/restaurante/${idRestaurante}`);
+  }
 }
