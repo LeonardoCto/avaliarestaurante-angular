@@ -42,4 +42,8 @@ export class RestauranteService {
     return this.httpClient.delete<void>(`${this.API}/${id}`);
   }
 
+  calcularMediaAvaliacoes(restauranteId: number): Observable<number> {
+    return this.httpClient.get<number>(`${this.API}/${restauranteId}/media-avaliacoes`);
+  }
+
 }
