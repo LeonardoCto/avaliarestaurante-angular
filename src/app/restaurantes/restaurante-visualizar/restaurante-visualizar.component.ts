@@ -168,7 +168,7 @@ calcularMediaAvaliacoes() {
   if (idDoRestaurante != null) {
     this.restauranteService.calcularMediaAvaliacoes(idDoRestaurante).subscribe(
       media => {
-        this.atualizarMediaAvaliacoesNaTela(media);
+        this.atualizarMediaAvaliacoesNaTela(parseFloat(media.toFixed(2)));
       },
       erro => {
         console.error('Erro ao buscar média de avaliações', erro);
