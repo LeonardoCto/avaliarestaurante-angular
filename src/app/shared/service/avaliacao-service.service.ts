@@ -30,4 +30,8 @@ export class AvaliacaoServiceService {
   buscarTodasNotas(idRestaurante: number): Observable<number[]> {
     return this.httpClient.get<number[]>(`${this.API}/restaurante/${idRestaurante}`);
   }
+
+  usuarioAvaliouRestaurante(idRestaurante: number, idUsuario: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.API}/verificar-avaliacao/${idRestaurante}/${idUsuario}`);
+  }
 }

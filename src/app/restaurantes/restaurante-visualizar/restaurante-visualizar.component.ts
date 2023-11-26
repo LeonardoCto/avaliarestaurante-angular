@@ -86,7 +86,30 @@ buscarRestaurantePeloId() {
     });
 }
 
-salvarAvaliacao(){
+async salvarAvaliacao() {
+
+  const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
+
+  if (idDoRestaurante != null && this.idUsuarioLogado != null) {
+    try {
+      // Verificar se o usuário já avaliou o restaurante
+      const usuarioJaAvaliou = await this.avaliacaoService.usuarioAvaliouRestaurante(idDoRestaurante, this.idUsuarioLogado).toPromise();
+
+      if (usuarioJaAvaliou) {
+        // Exibir mensagem de erro ou tomar outra ação apropriada
+        Swal.fire("Você já avaliou este restaurante.", "", "error");
+        return; // Encerra o método aqui para evitar a execução do restante do código
+      }
+    } catch (error) {
+      console.error('Erro ao verificar se o usuário avaliou o restaurante:', error);
+      // Você pode escolher exibir uma mensagem de erro ou tomar outra ação apropriada
+      return; // Encerra o método aqui em caso de erro para evitar a execução do restante do código
+    }
+  }else if(this.idUsuarioLogado == null){
+    Swal.fire("Realize login para poder avaliar um restaurante!", "", "error");
+    return;
+  }
+
   const avaliacao: Avaliacao = new Avaliacao();
   this.dadosCompartilhadosAvaliacaoService.setDescricao(this.comentario);
   this.dadosCompartilhadosAvaliacaoService.setNota(this.nota);
@@ -106,10 +129,9 @@ salvarAvaliacao(){
   Swal.fire({
     title: "Salvar esta avaliação?",
     showDenyButton: true,
-    showCancelButton: true,
+    showCancelButton: false,
     confirmButtonText: "Salvar",
-    denyButtonText: `Não salvar`,
-    cancelButtonText: "Cancelar"
+    denyButtonText: `Não salvar`
   }).then((result) => {
     if (result.isConfirmed) {
       this.avaliacaoService.salvar(avaliacao).subscribe(
@@ -121,7 +143,7 @@ salvarAvaliacao(){
           console.error('Erro salvar avaliacao:', error);
         }
       );
-      Swal.fire("Saved!", "", "success");
+      Swal.fire("Avaliação salva!", "", "success");
     } else if (result.isDenied) {
       Swal.fire("Changes are not saved", "", "info");
     }
@@ -136,7 +158,7 @@ excluirAvaliacao(avaliacao: Avaliacao): void {
 
   Swal.fire({
     title: "Tem certeza disso?",
-    text: "Você não poderá desfazer isso futuramente!",
+    text: "Você não poderá desfazer essa ação!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
@@ -156,7 +178,6 @@ excluirAvaliacao(avaliacao: Avaliacao): void {
       );
       Swal.fire({
         title: "Restaurante deletado!",
-        text: "voltar para a lista.",
         icon: "success"
       });
     }
