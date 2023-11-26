@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
 import { Pessoa } from 'src/app/shared/model/Pessoa';
 import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/service/dados-compartilhados-editar-restaurante.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-restaurante-visualizar',
@@ -47,13 +48,24 @@ onRatingChange(event: any, index: number) {
   this.avaliacoes[index].nota = event.value;
 }
 
+atualizarListaAvaliacoes(avaliacao: Avaliacao) {
+  this.avaliacoes.push(avaliacao);
+}
+atualizarRemoverAvaliacaoDaLista(avaliacao: Avaliacao) {
+  const index = this.avaliacoes.indexOf(avaliacao);
+  if (index !== -1) {
+    this.avaliacoes.splice(index, 1);
+  }
+}
+atualizarMediaAvaliacoesNaTela(media: number) {
+  this.mediaAvaliacoes = media;
+}
 
 buscarAvaliacoesDoRestaurante() {
   const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
   this.avaliacaoService.buscarAvaliacoesPorIdRestaurante(idDoRestaurante!).subscribe(
     resultado => {
       this.avaliacoes = resultado;
-
       for (const avaliacao of this.avaliacoes) {
         this.notaDoUsuario = avaliacao.nota;
       }
@@ -75,9 +87,7 @@ buscarRestaurantePeloId() {
 }
 
 salvarAvaliacao(){
-
-   const avaliacao: Avaliacao = new Avaliacao();
-
+  const avaliacao: Avaliacao = new Avaliacao();
   this.dadosCompartilhadosAvaliacaoService.setDescricao(this.comentario);
   this.dadosCompartilhadosAvaliacaoService.setNota(this.nota);
   this.dadosCompartilhadosAvaliacaoService.setPessoa(this.authServiceService.getPessoa());
@@ -93,16 +103,29 @@ salvarAvaliacao(){
   avaliacao.pessoa = pessoa;
   avaliacao.restaurante = restaurante;
 
-  this.avaliacaoService.salvar(avaliacao).subscribe(
-    (avaliacaoSalva) => {
-
-      console.log('Avaliacao salva com sucesso: ', avaliacaoSalva);
-
-    },
-    (error) => {
-      console.error('Erro salvar avaliacao:', error);
+  Swal.fire({
+    title: "Salvar esta avaliação?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Salvar",
+    denyButtonText: `Não salvar`,
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.avaliacaoService.salvar(avaliacao).subscribe(
+        (avaliacaoSalva) => {
+          this.atualizarListaAvaliacoes(avaliacaoSalva);
+          this.calcularMediaAvaliacoes();
+        },
+        (error) => {
+          console.error('Erro salvar avaliacao:', error);
+        }
+      );
+      Swal.fire("Saved!", "", "success");
+    } else if (result.isDenied) {
+      Swal.fire("Changes are not saved", "", "info");
     }
-  );
+  });
 }
 
 excluirAvaliacao(avaliacao: Avaliacao): void {
@@ -111,25 +134,41 @@ excluirAvaliacao(avaliacao: Avaliacao): void {
 
   console.log("Id da pessoa logada: " + pessoaAutenticada);
 
-  this.avaliacaoService.excluir(avaliacao, pessoaAutenticada!).subscribe(
-    () => {
-      console.log('Avaliação excluída com sucesso.');
-    },
-    (error) => {
-      console.error('Erro ao excluir avaliação:', error);
+  Swal.fire({
+    title: "Tem certeza disso?",
+    text: "Você não poderá desfazer isso futuramente!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sim, deletar!",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.avaliacaoService.excluir(avaliacao, pessoaAutenticada!).subscribe(
+        () => {
+          this.atualizarRemoverAvaliacaoDaLista(avaliacao);
+          this.calcularMediaAvaliacoes();
+        },
+        (error) => {
+          console.error('Erro ao excluir avaliação:', error);
+        }
+      );
+      Swal.fire({
+        title: "Restaurante deletado!",
+        text: "voltar para a lista.",
+        icon: "success"
+      });
     }
-  );
+  });
 }
 
 calcularMediaAvaliacoes() {
   const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
-  console.log('ID = ' + idDoRestaurante);
-  
   if (idDoRestaurante != null) {
     this.restauranteService.calcularMediaAvaliacoes(idDoRestaurante).subscribe(
       media => {
-        this.mediaAvaliacoes = media;
-        console.log('Media = ' + this.mediaAvaliacoes);
+        this.atualizarMediaAvaliacoesNaTela(media);
       },
       erro => {
         console.error('Erro ao buscar média de avaliações', erro);
@@ -137,6 +176,5 @@ calcularMediaAvaliacoes() {
     );
   }
 }
-
 
 }
