@@ -102,6 +102,7 @@ buscarComSeletor(seletor: SeletorRestaurante) {
   this.restauranteService.buscarComSeletor(seletor).subscribe(
     (resultado) => {
       this.restaurantes = resultado;
+      this.carregarMediasAvaliacoes();
       console.log('Restaurantes com filtro:', resultado);
     },
     (erro) => {
