@@ -30,8 +30,8 @@ export class RestauranteService {
     return this.httpClient.get<Restaurante>(`${this.API}/buscar/${id}`);
   }
 
-  atualizar(restaurante: Restaurante, id: number): Observable<Restaurante> {
-    return this.httpClient.put<Restaurante>(`${this.API}/${id}`, restaurante);
+  atualizar(restaurante: Restaurante): Observable<Restaurante> {
+    return this.httpClient.put<Restaurante>(`${this.API}/`, restaurante);
   }
 
   buscarComSeletor(seletor: SeletorRestaurante): Observable<Restaurante[]>{

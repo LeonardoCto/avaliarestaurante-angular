@@ -124,7 +124,7 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
 
 
 
-      this.restauranteService.atualizar(this.restaurante, idRestaurante!)
+      this.restauranteService.atualizar(this.restaurante)
         .subscribe(
           restauranteAtualizado => {
             console.log('Restaurante atualizado:', restauranteAtualizado);
