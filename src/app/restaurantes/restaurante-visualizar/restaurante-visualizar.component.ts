@@ -87,23 +87,19 @@ buscarRestaurantePeloId() {
 }
 
 async salvarAvaliacao() {
-
   const idDoRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
-
+  
   if (idDoRestaurante != null && this.idUsuarioLogado != null) {
     try {
-      // Verificar se o usuário já avaliou o restaurante
       const usuarioJaAvaliou = await this.avaliacaoService.usuarioAvaliouRestaurante(idDoRestaurante, this.idUsuarioLogado).toPromise();
 
       if (usuarioJaAvaliou) {
-        // Exibir mensagem de erro ou tomar outra ação apropriada
         Swal.fire("Você já avaliou este restaurante.", "", "error");
-        return; // Encerra o método aqui para evitar a execução do restante do código
+        return;
       }
     } catch (error) {
       console.error('Erro ao verificar se o usuário avaliou o restaurante:', error);
-      // Você pode escolher exibir uma mensagem de erro ou tomar outra ação apropriada
-      return; // Encerra o método aqui em caso de erro para evitar a execução do restante do código
+      return;
     }
   }else if(this.idUsuarioLogado == null){
     Swal.fire("Realize login para poder avaliar um restaurante!", "", "error");

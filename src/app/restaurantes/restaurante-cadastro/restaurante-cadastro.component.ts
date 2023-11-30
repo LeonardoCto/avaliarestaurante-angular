@@ -26,8 +26,6 @@ export class RestauranteCadastroComponent implements OnInit {
 
     this.router.navigate(['/endereco']);
 
-    } else {
-      alert("Por favor, preencha o nome antes de avançar.");
     }
   }
   ngOnInit(): void {

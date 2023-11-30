@@ -10,10 +10,21 @@
   </h2>
 </div>
 
-<div class="mb-6 ml-32 mr-32">
-  <input type="text" [(ngModel)]="nome" id="nome" class="block w-full text-center font-segoe-ui font-bold p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900">
-</div>
+<form #ngForm="ngForm">
+  <div>
+      <div class="mr-32 ml-32">
+          <label for="nome">Nome</label>
+          <input [ngClass]="((!restaurante.nome
+                            || (restaurante.nome && restaurante.nome.length < 3))
+                                && ngForm.submitted)
+                                ? 'form-control is-invalid block w-full text-center font-segoe-ui font-bold p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control block w-full text-center font-segoe-ui font-bold p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
 
+                 [(ngModel)]="nome"
+                 minlength="3" name="nome"
+                 required>
+          <div class="invalid-feedback">Informe um nome com no mínimo 3 caracteres</div>
+      </div>
+      
 <footer class="fixed bottom-8 left-0 w-full p-4">
   <button class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none" (click)="avancar()">
     Avançar
