@@ -19,13 +19,9 @@ export class RestauranteCadastroComponent implements OnInit {
   avancar() {
 
     if (this.nome) {
-
     this.dadosCompartilhadosRestauranteService.setNome(this.nome);
-
     console.log("nome: " + this.nome);
-
     this.router.navigate(['/endereco']);
-
     }
   }
   ngOnInit(): void {

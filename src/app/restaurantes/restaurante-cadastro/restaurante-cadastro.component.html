@@ -11,7 +11,6 @@
 </div>
 
 <form #ngForm="ngForm">
-  <div>
       <div class="mr-32 ml-32">
           <label for="nome">Nome</label>
           <input [ngClass]="((!restaurante.nome
@@ -24,12 +23,11 @@
                  required>
           <div class="invalid-feedback">Informe um nome com no mínimo 3 caracteres</div>
       </div>
-      
+
 <footer class="fixed bottom-8 left-0 w-full p-4">
   <button class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none" (click)="avancar()">
     Avançar
   </button>
-
 </footer>
 
 

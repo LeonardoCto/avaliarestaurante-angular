@@ -1,8 +1,11 @@
 import { Restaurante } from 'src/app/shared/model/Restaurante';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DadosCompartilhadosRestauranteService } from 'src/app/shared/service/dados-compartilhados-restaurante.service';
 import { Endereco } from 'src/app/shared/model/Endereco';
+import { NgFor } from '@angular/common';
+import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-restaurante-endereco',
@@ -24,7 +27,16 @@ export class RestauranteEnderecoComponent {
   endereco: Endereco = new Endereco();
   restaurante: Restaurante = new Restaurante();
 
-  avancar() {
+  @ViewChild('ngForm')
+  public ngForm: NgForm;
+
+  avancar(form: NgForm) {
+
+    if(form.invalid){
+      Swal.fire("Atenção", "Verifique todos os campos!", 'warning');
+      return;
+    }
+
     this.dadosCompartilhadosService.setEndereco(
     this.cidade, this.estado, this.rua, this.numero, this.bairro, this.rua);
 
