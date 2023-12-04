@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Restaurante } from '../model/Restaurante';
 import { SeletorRestaurante } from '../model/SeletorRestaurante';
 
@@ -8,6 +8,16 @@ import { SeletorRestaurante } from '../model/SeletorRestaurante';
   providedIn: 'root'
 })
 export class RestauranteService {
+
+  private nomeParaBuscarSubject: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
+
+  setNomeParaBuscar(nome: string): void {
+    this.nomeParaBuscarSubject.next(nome);
+  }
+
+  getNomeParaBuscar(): Observable<string | undefined> {
+    return this.nomeParaBuscarSubject.asObservable();
+  }
 
   private readonly API = "http://localhost:8080/api/restaurante";
 

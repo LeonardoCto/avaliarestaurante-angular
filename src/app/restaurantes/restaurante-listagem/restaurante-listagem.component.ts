@@ -24,6 +24,7 @@ export class RestauranteListagemComponent implements OnInit{
   public restaurantes: Array<Restaurante> = new Array();
   hoveredIndex: number | null = null;
   idRestauranteSelecionado: number | null = null;
+  nomeParaBuscar: string | undefined;
 
   onMouseEnter(index: number) {
     this.hoveredIndex = index;
@@ -35,7 +36,10 @@ export class RestauranteListagemComponent implements OnInit{
 
   ngOnInit(): void {
     this.buscarRestaurantes();
-
+    this.restauranteService.getNomeParaBuscar().subscribe((nome) => {
+      this.nomeParaBuscar = nome;
+      this.buscarComSeletor();
+    });
 }
 
 selecionarRestaurante(id: number): void {
@@ -80,7 +84,9 @@ async exibirModalDeFiltros() {
       '<input id="rua" class="swal2-input" placeholder="Rua">' +
       '<input id="cep" class="swal2-input" placeholder="CEP">' +
       '<input id="bairro" class="swal2-input" placeholder="Bairro">' +
-      '<input id="cidade" class="swal2-input" placeholder="Cidade">',
+      '<input id="cidade" class="swal2-input" placeholder="Cidade">' +
+      '<input id="mediaMin" class="swal2-input" placeholder="Média Mínima">' +
+      '<input id="mediaMax" class="swal2-input" placeholder="Média Máxima">',
     focusConfirm: false,
     preConfirm: () => {
       return {
@@ -89,6 +95,8 @@ async exibirModalDeFiltros() {
         cep: (document.getElementById('cep') as HTMLInputElement).value,
         bairro: (document.getElementById('bairro') as HTMLInputElement).value,
         cidade: (document.getElementById('cidade') as HTMLInputElement).value,
+        mediaMin: (document.getElementById('mediaMin') as HTMLInputElement).value,
+        mediaMax: (document.getElementById('mediaMax') as HTMLInputElement).value,
       };
     },
   });
@@ -98,7 +106,10 @@ async exibirModalDeFiltros() {
   }
 }
 
-buscarComSeletor(seletor: SeletorRestaurante) {
+buscarComSeletor(seletor?: SeletorRestaurante) {
+  if (!seletor) {
+    seletor = { nome: this.nomeParaBuscar || '' };
+  }
   this.restauranteService.buscarComSeletor(seletor).subscribe(
     (resultado) => {
       this.restaurantes = resultado;
