@@ -105,7 +105,6 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
       }
     });
 
-      const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
       const pessoaAssociada = this.authService.getPessoa();
       const enderecoAssociado : Endereco = new Endereco();
 

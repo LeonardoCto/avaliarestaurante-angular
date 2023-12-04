@@ -24,4 +24,7 @@ export class PessoaService {
   buscarPessoaPeloId(id: number): Observable<Pessoa> {
     return this.httpClient.get<Pessoa>(`${this.API}/${id}`);
   }
+  atualizar(pessoa: Pessoa): Observable<Pessoa> {
+    return this.httpClient.put<Pessoa>(`${this.API}`, pessoa);
+  }
 }

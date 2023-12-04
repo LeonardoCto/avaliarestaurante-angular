@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PessoaService } from 'src/app/shared/service/PessoaService';
 import { Pessoa } from 'src/app/shared/model/Pessoa';
+import Swal from 'sweetalert2';
+import { Endereco } from 'src/app/shared/model/Endereco';
 
 @Component({
   selector: 'app-usuario-editar-perfil',
@@ -24,6 +26,8 @@ export class UsuarioEditarPerfilComponent implements OnInit{
   numero: number;
 
   private subscription: Subscription;
+
+  pessoaAtualizada : Pessoa = new Pessoa();
 
   ngOnInit(): void {
     this.preencherCampos();
@@ -46,6 +50,49 @@ export class UsuarioEditarPerfilComponent implements OnInit{
         });
     }
   }
+  atualizarRestaurante(): void {
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      if (result.isConfirmed) {
 
+        const idUsuario = this.authServiceService.getUserId();
+
+        const enderecoNovo : Endereco = new Endereco();
+
+        enderecoNovo.cidade = this.cidade;
+        enderecoNovo.estado = this.estado;
+        enderecoNovo.cep = this.cep;
+        enderecoNovo.bairro = this.bairro;
+        enderecoNovo.numero = this.numero;
+        enderecoNovo.rua = this.rua;
+
+        this.pessoaAtualizada.id = idUsuario!;
+        this.pessoaAtualizada.cpf = this.authServiceService.getPessoa().cpf;
+        this.pessoaAtualizada.email = this.authServiceService.getPessoa().email;
+        this.pessoaAtualizada.nome = this.authServiceService.getPessoa().nome;
+        this.pessoaAtualizada.senha = this.authServiceService.getPessoa().senha;
+        this.pessoaAtualizada.endereco = enderecoNovo;
+
+
+        this.pessoaService.atualizar(this.pessoaAtualizada)
+          .subscribe(
+            pessoaAtualizadaa => {
+              console.log('PessoaAtualizadaa atualizada:', pessoaAtualizadaa);
+            },
+            error => {
+              console.error('Erro ao atualizar pessoa:', error);
+            }
+          );
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  }
 }
 
