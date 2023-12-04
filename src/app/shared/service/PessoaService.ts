@@ -21,4 +21,7 @@ export class PessoaService {
     return this.httpClient.post<Pessoa>(`${this.API}/login`, pessoaDTO);
   }
 
+  buscarPessoaPeloId(id: number): Observable<Pessoa> {
+    return this.httpClient.get<Pessoa>(`${this.API}/${id}`);
+  }
 }

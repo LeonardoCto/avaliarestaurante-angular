@@ -88,6 +88,7 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
         });
     }
   }
+
   atualizarRestaurante(): void {
 
     Swal.fire({
