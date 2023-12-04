@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DadosCompartilhadosRestauranteService } from 'src/app/shared/service/dados-compartilhados-restaurante.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-restaurante-imagem',
@@ -10,6 +12,9 @@ import { DadosCompartilhadosRestauranteService } from 'src/app/shared/service/da
 export class RestauranteImagemComponent {
 
   private imagemSelecionada: File | null = null;
+
+  @ViewChild('ngForm')
+  public ngForm: NgForm;
 
   constructor(private router: Router, private dadosCompartilhadosService: DadosCompartilhadosRestauranteService) { }
 
@@ -23,7 +28,12 @@ export class RestauranteImagemComponent {
     }
   }
 
-  avancar() {
+  avancar(form : NgForm) {
+
+    if(form.invalid || this.imagemSelecionada == null){
+      Swal.fire("Atenção", "Selecione uma imagem!", 'warning');
+    }
+
     if (this.imagemSelecionada) {
       this.router.navigate(['/finalizar']);
     } else {

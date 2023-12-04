@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { RestauranteService } from 'src/app/shared/service/restaurante.service';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-restaurante-finalizar',
@@ -17,6 +18,14 @@ export class RestauranteFinalizarComponent {
     private authServiceService : AuthServiceService) { }
 
   finalizarCadastro(){
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Restaurante cadastrado!",
+      showConfirmButton: false,
+      timer: 1800
+    });
 
     const restauranteNome = this.dadosCompartilhadosRestauranteService.getNome();
     const restauranteCnpj = this.dadosCompartilhadosRestauranteService.getCnpj();
@@ -42,6 +51,7 @@ export class RestauranteFinalizarComponent {
         console.error('Erro ao cadastrar o produto:', error);
       }
     );
+    //this.router.navigate(['/']);
   }
 
 }

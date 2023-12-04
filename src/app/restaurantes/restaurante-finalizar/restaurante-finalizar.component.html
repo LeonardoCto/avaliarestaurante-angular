@@ -1,14 +1,24 @@
-<div class="flex flex-col items-center justify-center mt-10 pb-1">
-  <h1 class="text-3xl font-semibold text-gray-600 mb-4 ml-4">
-    Finalizar cadastro
-  </h1>
+
+<div class="flex items-center justify-center mt-32">
+  <div class="flex">
+    <div class="mr-20">
+      <a href="/" class="text-center block p-4 bg-gray-50 ml-4 rounded-lg overflow-hidden shadow-md">
+        <a><img src="https://i.ibb.co/HFyk6ZT/house.png" alt="house" border="0"></a>
+        <h1 class="text-3xl font-semibold text-gray-600 dark:text-black-400 mt-4">
+         Voltar para o menu
+        </h1>
+      </a>
+    </div>
+    <div (click)="finalizarCadastro()">
+      <a class="text-center block p-4 bg-gray-50 ml-4 rounded-lg overflow-hidden shadow-md">
+        <a><img src="https://i.ibb.co/NLQh2hK/check-1.png" alt="check-1" border="0"></a>
+               <h1 class="text-3xl font-semibold text-gray-600 dark:text-black-400 mt-4">
+         Finalizar Cadastro
+        </h1>
+      </a>
+    </div>
+  </div>
 </div>
-
-<button class=" bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none"
-(click)="finalizarCadastro()">
-  Cadastrar
-</button>
-
 <footer class="fixed bottom-8 left-0 w-full p-4">
   <a class="underline bg-white-800 text-black px-4 py-2 absolute left-4 hover:bg-blue-600 focus:outline-none" href="/imagem">
     Voltar
