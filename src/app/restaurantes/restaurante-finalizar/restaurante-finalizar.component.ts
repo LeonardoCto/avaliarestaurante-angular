@@ -51,7 +51,6 @@ export class RestauranteFinalizarComponent {
         console.error('Erro ao cadastrar o produto:', error);
       }
     );
-    //this.router.navigate(['/']);
   }
 
 }

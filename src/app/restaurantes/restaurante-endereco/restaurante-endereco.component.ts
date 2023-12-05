@@ -38,7 +38,7 @@ export class RestauranteEnderecoComponent {
     }
 
     this.dadosCompartilhadosService.setEndereco(
-    this.cidade, this.estado, this.rua, this.numero, this.bairro, this.rua);
+    this.cidade, this.estado, this.cep, this.numero, this.bairro, this.rua);
 
     this.dadosCompartilhadosService.setCnpj(this.cnpj);
 

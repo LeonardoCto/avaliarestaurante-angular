@@ -11,6 +11,10 @@ export class RestauranteService {
 
   private nomeParaBuscarSubject: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
 
+  private readonly API = "http://localhost:8080/api/restaurante";
+
+  constructor(private httpClient: HttpClient) { }
+
   setNomeParaBuscar(nome: string): void {
     this.nomeParaBuscarSubject.next(nome);
   }
@@ -18,10 +22,6 @@ export class RestauranteService {
   getNomeParaBuscar(): Observable<string | undefined> {
     return this.nomeParaBuscarSubject.asObservable();
   }
-
-  private readonly API = "http://localhost:8080/api/restaurante";
-
-  constructor(private httpClient: HttpClient) { }
 
   salvar(restaurante: Restaurante): Observable<Restaurante> {
     console.log('JSON enviado: ', JSON.stringify(restaurante));
@@ -40,8 +40,8 @@ export class RestauranteService {
     return this.httpClient.get<Restaurante>(`${this.API}/buscar/${id}`);
   }
 
-  atualizar(restaurante: Restaurante): Observable<Restaurante> {
-    return this.httpClient.put<Restaurante>(`${this.API}/`, restaurante);
+   atualizar(restaurante: Restaurante): Observable<Restaurante> {
+    return this.httpClient.put<Restaurante>(`${this.API}`, restaurante);
   }
 
   buscarComSeletor(seletor: SeletorRestaurante): Observable<Restaurante[]>{
@@ -53,7 +53,7 @@ export class RestauranteService {
   }
 
   calcularMediaAvaliacoes(restauranteId: number): Observable<number> {
-    return this.httpClient.get<number>(`${this.API}/${restauranteId}/media-avaliacoes`);
+    return this.httpClient.get<number>(`${this.API}/${restauranteId}/media`);
   }
 
 }

@@ -1,5 +1,5 @@
 import { DadosCompartilhadosRestauranteService } from './../../shared/service/dados-compartilhados-restaurante.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RestauranteService } from 'src/app/shared/service/restaurante.service';
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   templateUrl: './restaurante-editar-restaurante.component.html',
   styleUrls: ['./restaurante-editar-restaurante.component.scss']
 })
-export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy {
+export class RestauranteEditarRestauranteComponent implements OnInit {
 
   idRestaurante: number;
   nome: String;
@@ -76,7 +76,7 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
         .subscribe((restaurante: Restaurante) => {
 
           console.log("id do endereco do restaurante: " + restaurante.endereco.id)
-          this.idRestaurante = restaurante.endereco.id;
+          this.idRestaurante = restaurante.id;
           this.nome = restaurante.nome;
           this.cnpj = restaurante.cnpj;
           this.cidade = restaurante.endereco.cidade;
@@ -85,6 +85,7 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
           this.rua = restaurante.endereco.rua;
           this.bairro = restaurante.endereco.bairro;
           this.numero = restaurante.endereco.numero;
+
         });
     }
   }
@@ -98,46 +99,41 @@ export class RestauranteEditarRestauranteComponent implements OnInit, OnDestroy 
       confirmButtonText: "Save",
       denyButtonText: `Don't save`
     }).then((result) => {
+
       if (result.isConfirmed) {
+        const pessoaAssociada = this.authService.getPessoa();
+        const enderecoAssociado : Endereco = new Endereco();
+
+        enderecoAssociado.id = this.idRestaurante;
+        enderecoAssociado.cidade = this.cidade;
+        enderecoAssociado.cep = this.cep;
+        enderecoAssociado.bairro = this.bairro;
+        enderecoAssociado.estado = this.estado;
+        enderecoAssociado.numero = this.numero;
+        enderecoAssociado.rua = this.rua;
+
+        this.restaurante.id = this.idRestaurante;
+        this.restaurante.cnpj = this.cnpj;
+        this.restaurante.nome = this.nome;
+        this.restaurante.pessoa = pessoaAssociada;
+        this.restaurante.endereco = enderecoAssociado;
+        this.restaurante.imagem = this.dadosCompartilhadosRestauranteService.getImagem();
+
+        console.log(this.restaurante);
+
+        this.restauranteService.atualizar(this.restaurante)
+          .subscribe(
+            restauranteAtualizado => {
+              console.log('Restaurante atualizado:', restauranteAtualizado);
+            },
+            error => {
+              console.error('Erro ao atualizar restaurante:', error);
+            }
+          );
         Swal.fire("Saved!", "", "success");
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }
     });
-
-      const pessoaAssociada = this.authService.getPessoa();
-      const enderecoAssociado : Endereco = new Endereco();
-
-      enderecoAssociado.id = this.idRestaurante;
-      enderecoAssociado.cidade = this.cidade;
-      enderecoAssociado.cep = this.cep;
-      enderecoAssociado.bairro = this.bairro;
-      enderecoAssociado.estado = this.estado;
-      enderecoAssociado.numero = this.numero;
-      enderecoAssociado.rua = this.rua;
-
-      this.restaurante.cnpj = this.cnpj;
-      this.restaurante.nome = this.nome;
-      this.restaurante.pessoa = pessoaAssociada;
-      this.restaurante.endereco = enderecoAssociado;
-      this.restaurante.imagem = this.dadosCompartilhadosRestauranteService.getImagem();
-
-
-
-      this.restauranteService.atualizar(this.restaurante)
-        .subscribe(
-          restauranteAtualizado => {
-            console.log('Restaurante atualizado:', restauranteAtualizado);
-          },
-          error => {
-            console.error('Erro ao atualizar restaurante:', error);
-          }
-        );
-
-  }
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

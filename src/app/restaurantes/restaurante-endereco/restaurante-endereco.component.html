@@ -9,7 +9,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="cnpj" class="text-gray-600 dark:text-gray-500">CNPJ</label>
-      <input  [ngClass]="!restaurante.cnpj && ngForm.submitted
+      <input  [ngClass]="ngForm.submitted
       ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
           [(ngModel)]="cnpj"
           minlength="14" maxlength="14" name="cnpj" type="text"
@@ -18,7 +18,7 @@
   </div>
   <div>
     <label for="cidade" class="text-gray-600 dark:text-gray-500">Cidade</label>
-    <input  [ngClass]="!restaurante.endereco && ngForm.submitted
+    <input  [ngClass]=" ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
         [(ngModel)]="cidade"
        name="cidade" type="text"
@@ -30,7 +30,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="estado" class="text-gray-600 dark:text-gray-500">Estado</label>
-      <input  [ngClass]="!restaurante.endereco && ngForm.submitted
+      <input  [ngClass]="ngForm.submitted
       ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
           [(ngModel)]="estado"
          name="estado" type="text"
@@ -39,7 +39,7 @@
   </div>
   <div>
     <label for="cep" class="text-gray-600 dark:text-gray-500">CEP</label>
-    <input  [ngClass]="!restaurante.endereco && ngForm.submitted
+    <input  [ngClass]="ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
         [(ngModel)]="cep"
        name="cep" type="text"
@@ -49,7 +49,7 @@
   </div>
   <div>
     <label for="rua" class="text-gray-600 dark:text-gray-500">Rua</label>
-    <input  [ngClass]="!restaurante.endereco && ngForm.submitted
+    <input  [ngClass]="ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
         [(ngModel)]="rua"
        name="rua" type="text"
@@ -59,7 +59,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="bairro" class="text-gray-600 dark:text-gray-500">Bairro</label>
-      <input  [ngClass]="!restaurante.endereco && ngForm.submitted
+      <input  [ngClass]="ngForm.submitted
       ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
           [(ngModel)]="bairro"
          name="bairro" type="text"
@@ -68,12 +68,12 @@
   </div>
   <div>
     <label for="numero" class="text-gray-600 dark:text-gray-500">Numero</label>
-    <input  [ngClass]="!restaurante.endereco && ngForm.submitted
+    <input  [ngClass]="ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
         [(ngModel)]="numero"
        name="numero" type="number"
       required>
-      <div class="invalid-feedback">Informe a Rua</div>
+      <div class="invalid-feedback">Informe o Número</div>
 </div>
 </div>
 

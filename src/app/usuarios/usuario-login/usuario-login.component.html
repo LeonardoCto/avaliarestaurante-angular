@@ -14,16 +14,27 @@
               <div class="absolute bg-gray-800 opacity-60 inset-0 z-0"></div>
           </div>
           <div class="w-full py-6 z-20">
-              <form (submit)="login()" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+              <form (submit)="login()" #ngForm="ngForm" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                   <div class="pb-2 pt-4 text-5xl font-bold tracking-wide mb-4">
                       LOGIN
                   </div>
                   <div class="pb-2 pt-4">
-                      <input [(ngModel)]="email" type="email" name="email" id="email" placeholder="Email" class="block w-full p-4 text-lg rounded-lg bg-gray-800 text-white">
-                  </div>
+                    <input  [ngClass]="ngForm.submitted
+                        ? 'is-invalid block w-full p-4 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-4 text-lg rounded-lg bg-gray-800 text-white'"
+                              [(ngModel)]="email"
+                                name="email" type="text"
+                            placeholder="Email"
+                          required>
+                      <div class="invalid-feedback">Email necessário</div>
+                    </div>
                   <div class="pb-2 pt-4">
-                      <input  [(ngModel)]="senha" type="senha" name="senha" id="senha" class="block w-full p-4 text-lg rounded-lg bg-gray-800 text-white" placeholder="Senha">
-                  </div>
+                    <input  [ngClass]="ngForm.submitted
+                    ? 'is-invalid block w-full p-4 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-4 text-lg rounded-lg bg-gray-800 text-white'"
+                          [(ngModel)]="senha"
+                            name="senha" type="password"
+                        placeholder="senha"
+                      required>
+                  <div class="invalid-feedback">Senha necessária</div>                </div>
                   <div class="flex justify-between items-center">
                     <div class="text-gray-400 hover:underline hover:text-gray-200">
                         <a (click)="cadastrar()">Esqueceu sua senha?</a>
