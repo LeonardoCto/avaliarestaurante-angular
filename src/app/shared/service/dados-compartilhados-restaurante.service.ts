@@ -60,4 +60,11 @@ export class DadosCompartilhadosRestauranteService {
   getEndereco(): Endereco {
     return this.endereco;
   }
+
+  getMedia(){
+    return this.restaurante.mediaAvaliacoes;
+  }
+  setMedia(mediaAvaliacoes: number){
+    this.restaurante.mediaAvaliacoes = mediaAvaliacoes;
+  }
 }
