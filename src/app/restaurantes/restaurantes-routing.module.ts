@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RestauranteListagemComponent } from './restaurante-listagem/restaurante-listagem.component';
 import { RestauranteCadastroComponent } from './restaurante-cadastro/restaurante-cadastro.component';
@@ -8,6 +8,7 @@ import { RestauranteFinalizarComponent } from './restaurante-finalizar/restauran
 import { RestauranteEditarRestauranteComponent } from './restaurante-editar-restaurante/restaurante-editar-restaurante.component';
 import { RestauranteListarEdicaoComponent } from './restaurante-listar-edicao/restaurante-listar-edicao.component';
 import { RestauranteVisualizarComponent } from './restaurante-visualizar/restaurante-visualizar.component';
+import { RestauranteRelatorioComponent } from './restaurante-relatorio/restaurante-relatorio.component';
 
 const routes: Routes = [
   {path: "", component: RestauranteListagemComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: "editar", component: RestauranteEditarRestauranteComponent},
   {path: "lista", component: RestauranteListarEdicaoComponent},
   {path: "detalhe", component: RestauranteVisualizarComponent},
+  {path: "relatorio", component: RestauranteRelatorioComponent}
 
 ];
 

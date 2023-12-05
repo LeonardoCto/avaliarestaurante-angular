@@ -13,6 +13,7 @@ import { RestauranteEditarRestauranteComponent } from './restaurante-editar-rest
 import { RestauranteListarEdicaoComponent } from './restaurante-listar-edicao/restaurante-listar-edicao.component';
 import { RestauranteVisualizarComponent } from './restaurante-visualizar/restaurante-visualizar.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { RestauranteRelatorioComponent } from './restaurante-relatorio/restaurante-relatorio.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     RestauranteFinalizarComponent,
     RestauranteEditarRestauranteComponent,
     RestauranteListarEdicaoComponent,
-    RestauranteVisualizarComponent
+    RestauranteVisualizarComponent,
+    RestauranteRelatorioComponent
   ],
   imports: [
     CommonModule,
