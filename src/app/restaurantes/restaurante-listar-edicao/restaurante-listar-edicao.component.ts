@@ -54,7 +54,6 @@ deletarRestaurante(id: number) {
           console.log('Erro ao deletar restaurante', erro);
         }
       );
-
       Swal.fire({
         title: "Restaurante deletado!",
         text: "voltar para a lista.",
