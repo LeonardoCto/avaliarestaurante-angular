@@ -1,8 +1,10 @@
 import { Pessoa } from 'src/app/shared/model/Pessoa';
 import { PessoaService } from './../../shared/service/PessoaService';
 import { DadosCompartilhadosCadastroService } from './../../shared/service/dados-compartilhados-cadastro.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuario-endereco',
@@ -11,12 +13,15 @@ import { Router } from '@angular/router';
 })
 export class UsuarioEnderecoComponent {
 
-  constructor(private router : Router, private dadosCompartilhadosCadastroService : DadosCompartilhadosCadastroService,
-    private pessoaService : PessoaService) { }
+  constructor(private router: Router, private dadosCompartilhadosCadastroService: DadosCompartilhadosCadastroService,
+    private pessoaService: PessoaService) { }
 
-  voltar(){
+  voltar() {
     this.router.navigate(['/cadastrar']);
   }
+
+  @ViewChild('ngForm')
+  public ngForm: NgForm;
 
   CEP: String;
   rua: String;
@@ -25,32 +30,36 @@ export class UsuarioEnderecoComponent {
   estado: String;
   bairro: String;
 
-  finalizar(){
-    this.dadosCompartilhadosCadastroService.setEndereco(this.CEP, this.rua, this.cidade, this.numero, this.bairro, this.estado);
+  finalizar(form: NgForm) {
 
-    const pessoaDados = this.dadosCompartilhadosCadastroService.getDados();
-    const pessoaEndereco = this.dadosCompartilhadosCadastroService.getEndereco();
+    if (form.invalid) {
+      return;
+    } else {
+      this.dadosCompartilhadosCadastroService.setEndereco(this.CEP, this.rua, this.cidade, this.numero, this.bairro, this.estado);
 
-    const pessoa: Pessoa = new Pessoa();
+      const pessoaDados = this.dadosCompartilhadosCadastroService.getDados();
+      const pessoaEndereco = this.dadosCompartilhadosCadastroService.getEndereco();
 
-    pessoa.nome = pessoaDados.nome;
-    pessoa.email = pessoaDados.email;
-    pessoa.cpf = pessoaDados.cpf;
-    pessoa.senha = pessoaDados.senha;
-    pessoa.endereco = pessoaEndereco;
+      const pessoa: Pessoa = new Pessoa();
 
-    this.pessoaService.salvar(pessoa).subscribe(
-      (pessoaSalva) => {
+      pessoa.nome = pessoaDados.nome;
+      pessoa.email = pessoaDados.email;
+      pessoa.cpf = pessoaDados.cpf;
+      pessoa.senha = pessoaDados.senha;
+      pessoa.endereco = pessoaEndereco;
 
-        console.log('Pessoa salva com sucesso: ', pessoaSalva);
+      this.pessoaService.salvar(pessoa).subscribe(
+        (pessoaSalva) => {
 
-      },
-      (error) => {
-        console.error('Erro ao cadastrar pessoa:', error);
-      }
-    );
+          console.log('Pessoa salva com sucesso: ', pessoaSalva);
 
-    this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.error('Erro ao cadastrar pessoa:', error);
+        }
+      );
+
+      this.router.navigate(['/login']);
+    }
   }
-
 }

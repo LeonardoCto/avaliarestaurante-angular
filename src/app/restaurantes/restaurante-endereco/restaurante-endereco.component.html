@@ -1,89 +1,80 @@
-
 <div class="flex flex-col items-center justify-center mt-10 pb-1 ">
   <h1 class="text-3xl font-semibold text-gray-600 dark:text-black-400 mb-4 ml-4">
     Aonde seu restaurante se localiza?
   </h1>
 </div>
-
 <form #ngForm="ngForm" class="mt-8 px-4 space-y-4 ml-8 mr-8">
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="cnpj" class="text-gray-600 dark:text-gray-500">CNPJ</label>
-      <input  [ngClass]="ngForm.submitted
+      <input
+        [ngClass]="ngForm.submitted
       ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-          [(ngModel)]="cnpj"
-          minlength="14" maxlength="14" name="cnpj" type="text"
-        required>
-        <div class="invalid-feedback">Informe o CNPJ</div>
-  </div>
-  <div>
-    <label for="cidade" class="text-gray-600 dark:text-gray-500">Cidade</label>
-    <input  [ngClass]=" ngForm.submitted
+        [(ngModel)]="cnpj" minlength="14" maxlength="14" name="cnpj" type="text" required>
+      <div class="invalid-feedback">Informe o CNPJ</div>
+    </div>
+    <div>
+      <label for="cidade" class="text-gray-600 dark:text-gray-500">Cidade</label>
+      <input
+        [ngClass]=" ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-        [(ngModel)]="cidade"
-       name="cidade" type="text"
-      required>
+        [(ngModel)]="cidade" name="cidade" type="text" required>
       <div class="invalid-feedback">Informe a cidade</div>
-</div>
+    </div>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="estado" class="text-gray-600 dark:text-gray-500">Estado</label>
-      <input  [ngClass]="ngForm.submitted
+      <input
+        [ngClass]="ngForm.submitted
       ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-          [(ngModel)]="estado"
-         name="estado" type="text"
-        required>
-        <div class="invalid-feedback">Informe o estado</div>
-  </div>
-  <div>
-    <label for="cep" class="text-gray-600 dark:text-gray-500">CEP</label>
-    <input  [ngClass]="ngForm.submitted
+        [(ngModel)]="estado" name="estado" type="text" required>
+      <div class="invalid-feedback">Informe o estado</div>
+    </div>
+    <div>
+      <label for="cep" class="text-gray-600 dark:text-gray-500">CEP</label>
+      <input
+        [ngClass]="ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-        [(ngModel)]="cep"
-       name="cep" type="text"
-      required>
+        [(ngModel)]="cep" name="cep" type="text" required>
       <div class="invalid-feedback">Informe o CEP</div>
-</div>
+    </div>
   </div>
   <div>
     <label for="rua" class="text-gray-600 dark:text-gray-500">Rua</label>
-    <input  [ngClass]="ngForm.submitted
+    <input
+      [ngClass]="ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-        [(ngModel)]="rua"
-       name="rua" type="text"
-      required>
-      <div class="invalid-feedback">Informe a Rua</div>
-</div>
+      [(ngModel)]="rua" name="rua" type="text" required>
+    <div class="invalid-feedback">Informe a Rua</div>
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
       <label for="bairro" class="text-gray-600 dark:text-gray-500">Bairro</label>
-      <input  [ngClass]="ngForm.submitted
+      <input
+        [ngClass]="ngForm.submitted
       ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-          [(ngModel)]="bairro"
-         name="bairro" type="text"
-        required>
-        <div class="invalid-feedback">Informe o Bairro</div>
-  </div>
-  <div>
-    <label for="numero" class="text-gray-600 dark:text-gray-500">Numero</label>
-    <input  [ngClass]="ngForm.submitted
+        [(ngModel)]="bairro" name="bairro" type="text" required>
+      <div class="invalid-feedback">Informe o Bairro</div>
+    </div>
+    <div>
+      <label for="numero" class="text-gray-600 dark:text-gray-500">Numero</label>
+      <input
+        [ngClass]="ngForm.submitted
     ? 'form-control is-invalid w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900' : 'form-control w-full font-segoe-ui font-bold p-2 text-gray-900 border border-gray-300 rounded-md bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-800 hover:border-gray-900'"
-        [(ngModel)]="numero"
-       name="numero" type="number"
-      required>
+        [(ngModel)]="numero" name="numero" type="number" required>
       <div class="invalid-feedback">Informe o Número</div>
-</div>
-</div>
+    </div>
+  </div>
 
-<footer class="fixed bottom-8 left-0 w-full p-4">
-  <button
-    class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none"
-    (click)="avancar(ngForm)">
-    Avançar
-</button>
-  <a class="underline rounded-lg bg-white-800 text-black px-4 py-2 absolute left-4 hover:bg-blue-600 focus:outline-none" href="/cadastro">
-    Voltar
-  </a>
-</footer>
+  <footer class="fixed bottom-8 left-0 w-full p-4">
+    <button class="bg-gray-800 text-white px-4 py-2 rounded-lg absolute right-4 hover:bg-blue-600 focus:outline-none"
+      (click)="avancar(ngForm)">
+      Avançar
+    </button>
+    <a class="underline rounded-lg bg-white-800 text-black px-4 py-2 absolute left-4 hover:bg-blue-600 focus:outline-none"
+      href="/cadastro">
+      Voltar
+    </a>
+  </footer>

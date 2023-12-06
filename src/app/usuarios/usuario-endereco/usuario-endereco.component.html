@@ -1,56 +1,83 @@
 <body class="bg-gray-800 text-white">
 
   <section class="min-h-screen flex items-stretch">
-      <div class="lg:flex w-1/2 hidden bg-gray-700 bg-no-repeat bg-cover relative items-center" style="background-image: url(https://www.estilofontana.com.br/blog/wp-content/uploads/2022/05/unnamed-54.png);">
-          <div class="absolute bg-gray-800 opacity-60 inset-0 z-0"></div>
-          <div class="w-full px-24 z-10">
-              <h1 class="text-5xl font-bold text-left tracking-wide">AvaliaRestaurante</h1>
-              <p class="text-3xl my-4">Descubra o seu restaurante ideal.</p>
-          </div>
+    <div class="lg:flex w-1/2 hidden bg-gray-700 bg-no-repeat bg-cover relative items-center"
+      style="background-image: url(https://www.estilofontana.com.br/blog/wp-content/uploads/2022/05/unnamed-54.png);">
+      <div class="absolute bg-gray-800 opacity-60 inset-0 z-0"></div>
+      <div class="w-full px-24 z-10">
+        <h1 class="text-5xl font-bold text-left tracking-wide">AvaliaRestaurante</h1>
+        <p class="text-3xl my-4">Descubra o seu restaurante ideal.</p>
       </div>
+    </div>
 
-      <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 bg-gray-700 relative">
-          <div class="absolute lg:hidden z-10 inset-0 bg-gray-700 bg-no-repeat bg-cover items-center" style="background-image: url(https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80);">
-              <div class="absolute bg-gray-800 opacity-60 inset-0 z-0"></div>
-          </div>
-          <div class="w-full py-6 z-20">
-              <form class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
-                <div class="pb-2 pt-4 text-5xl font-bold tracking-wide mb-">
-                  FINALIZAR
-              </div>
-                <div class="flex flex-wrap -mx-2">
-                  <div class="pb-2 pt-4 w-full md:w-1/2 px-1">
-                    <input type="text" [(ngModel)]="CEP" name="cep" id="cep" placeholder="CEP" class="block w-full p-3 text-lg rounded-lg bg-gray-800 text-white">
-                </div>
-                <div class="pb-2 pt-4 w-full md:w-1/2 px-1 ">
-                    <input type="text" [(ngModel)]="bairro" name="bairro" id="bairro" placeholder="Bairro" class="block w-full p-3 text-lg rounded-lg bg-gray-800 text-white">
-                </div>
-                  <div class="pb-2 pt-4 px-1 w-full">
-                    <input type="text" [(ngModel)]="cidade" name="cidade" id="cidade" placeholder="Cidade" class="block w-full p-3 text-lg rounded-lg bg-gray-800 text-white">
-                </div>
-                  <div class="pb-2 pt-4 w-full px-1 md:w-1/2">
-                      <input type="text" [(ngModel)]="rua" name="rua" id="rua" placeholder="Rua" class="block w-full p-3 text-lg rounded-lg bg-gray-800 text-white">
-                  </div>
-                  <div class="pb-2 pt-4 w-full px-1 md:w-1/2">
-                    <input type="number" [(ngModel)]="numero" name="numero" id="numero" placeholder="Número" class="block w-full p-3 text-lg rounded-lg bg-gray-800 text-white">
-                </div>
-
-                  <div class="pb-2 pt-4 px-1 w-full">
-                      <input type="text" [(ngModel)]="estado" name="estado" id="estado" placeholder="Estado" class="block w-full p-3 text-lg rounded-lg bg-gray-800 text-white">
-                  </div>
-                  <div class="px-16 pb-2 px-1 pt-4 w-full">
-                    <button (click)="finalizar()" class="uppercase flex items-center justify-center w-full p-3 text-lg rounded-lg bg-gray-900 hover:bg-gray-800 focus:outline-none">
-                        Cadastrar
-                    </button>
-                </div>
-                <div class="pb-2 pt-4 px-1 md:w-1/3 w-full">
-                  <button (click)="voltar()" class="uppercase flex items-center justify-center w-full p-3 text-lg rounded-lg bg-gray-900 hover:bg-gray-800 focus:outline-none">
-                      Voltar
-                  </button>
-              </div>
-                </div>
-              </form>
-          </div>
+    <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 bg-gray-700 relative">
+      <div class="absolute lg:hidden z-10 inset-0 bg-gray-700 bg-no-repeat bg-cover items-center"
+        style="background-image: url(https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80);">
+        <div class="absolute bg-gray-800 opacity-60 inset-0 z-0"></div>
       </div>
+      <div class="w-full py-6 z-20">
+        <form #ngForm="ngForm" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+          <div class="pb-2 pt-4 text-5xl font-bold tracking-wide mb-">
+            FINALIZAR
+          </div>
+          <div class="flex flex-wrap -mx-2">
+            <div class="pb-2 pt-4 w-full md:w-1/2 px-1">
+              <input
+                [ngClass]="ngForm.submitted
+                   ? 'is-invalid block w-full p-3 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-3 text-lg rounded-lg bg-gray-800 text-white'"
+                [(ngModel)]="CEP" name="cep" type="text" placeholder="CEP" name="cep" id="cep" required>
+              <div class="invalid-feedback">Insira o CEP</div>
+            </div>
+            <div class="pb-2 pt-4 w-full md:w-1/2 px-1 ">
+              <input
+                [ngClass]="ngForm.submitted
+                   ? 'is-invalid block w-full p-3 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-3 text-lg rounded-lg bg-gray-800 text-white'"
+                [(ngModel)]="bairro" name="bairro" type="text" placeholder="Bairro" name="bairro" id="bairro" required>
+              <div class="invalid-feedback">Insira o Bairro</div>
+            </div>
+            <div class="pb-2 pt-4 px-1 w-full">
+              <input
+              [ngClass]="ngForm.submitted
+                 ? 'is-invalid block w-full p-3 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-3 text-lg rounded-lg bg-gray-800 text-white'"
+              [(ngModel)]="cidade" name="cidade" type="text" placeholder="Cidade" name="cidade" id="cidade" required>
+            <div class="invalid-feedback">Insira a Cidade</div>
+            </div>
+            <div class="pb-2 pt-4 w-full px-1 md:w-1/2">
+              <input
+              [ngClass]="ngForm.submitted
+                 ? 'is-invalid block w-full p-3 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-3 text-lg rounded-lg bg-gray-800 text-white'"
+              [(ngModel)]="rua" name="rua" type="text" placeholder="Rua" name="rua" id="rua" required>
+            <div class="invalid-feedback">Insira a Rua</div>
+            </div>
+            <div class="pb-2 pt-4 w-full px-1 md:w-1/2">
+              <input
+              [ngClass]="ngForm.submitted
+                 ? 'is-invalid block w-full p-3 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-3 text-lg rounded-lg bg-gray-800 text-white'"
+              [(ngModel)]="numero" name="numero" type="number" placeholder="Número" name="numero" id="numero" required>
+            <div class="invalid-feedback">Insira a Cidade</div>
+            </div>
+            <div class="pb-2 pt-4 px-1 w-full">
+              <input
+              [ngClass]="ngForm.submitted
+                 ? 'is-invalid block w-full p-3 text-lg rounded-lg bg-gray-800 text-white' : 'block w-full p-3 text-lg rounded-lg bg-gray-800 text-white'"
+              [(ngModel)]="estado" name="estado" type="text" placeholder="Estado" name="estado" id="estado" required>
+            <div class="invalid-feedback">Insira a Cidade</div>
+            </div>
+            <div class="px-16 pb-2 px-1 pt-4 w-full">
+              <button (click)="finalizar(ngForm)"
+                class="uppercase flex items-center justify-center w-full p-3 text-lg rounded-lg bg-gray-900 hover:bg-gray-800 focus:outline-none">
+                Cadastrar
+              </button>
+            </div>
+            <div class="pb-2 pt-4 px-1 md:w-1/3 w-full">
+              <button (click)="voltar()"
+                class="uppercase flex items-center justify-center w-full p-3 text-lg rounded-lg bg-gray-900 hover:bg-gray-800 focus:outline-none">
+                Voltar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </section>
 </body>
