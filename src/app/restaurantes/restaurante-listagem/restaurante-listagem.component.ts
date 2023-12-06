@@ -66,7 +66,7 @@ carregarMediasAvaliacoes() {
   this.restaurantes.forEach((restaurante) => {
     this.restauranteService.calcularMediaAvaliacoes(restaurante.id).subscribe(
       (media) => {
-        restaurante.mediaAvaliacoes = media;
+        restaurante.media = media;
       },
       (erro) => {
         console.error('Erro ao buscar média de avaliações', erro);

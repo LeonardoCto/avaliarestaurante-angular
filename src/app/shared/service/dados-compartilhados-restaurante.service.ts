@@ -62,9 +62,9 @@ export class DadosCompartilhadosRestauranteService {
   }
 
   getMedia(){
-    return this.restaurante.mediaAvaliacoes;
+    return this.restaurante.media;
   }
-  setMedia(mediaAvaliacoes: number){
-    this.restaurante.mediaAvaliacoes = mediaAvaliacoes;
+  setMedia(media: number){
+    this.restaurante.media = media;
   }
 }

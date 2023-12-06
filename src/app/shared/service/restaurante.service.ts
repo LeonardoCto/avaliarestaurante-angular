@@ -56,4 +56,8 @@ export class RestauranteService {
     return this.httpClient.get<number>(`${this.API}/${restauranteId}/media`);
   }
 
+  ordenarRestauranteMaiorMedia(): Observable<Array<Restaurante>>{
+    return this.httpClient.get<Array<Restaurante>>(`${this.API}/ordenar`)
+  }
+
 }

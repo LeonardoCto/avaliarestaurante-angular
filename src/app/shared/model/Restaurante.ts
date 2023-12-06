@@ -9,5 +9,5 @@ export class Restaurante {
   avaliacao: number;
   imagem: String;
   cnpj: String;
-  mediaAvaliacoes: number | null | undefined;
+  media: number;
 }
