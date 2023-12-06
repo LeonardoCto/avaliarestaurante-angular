@@ -58,9 +58,9 @@ export class RestauranteEditarRestauranteComponent implements OnInit {
     private router: Router,
     private dadosCompartilhadosEditarRestauranteService: DadosCompartilhadosEditarRestauranteService,
     private restauranteService: RestauranteService,
-    private authService : AuthServiceService,
-    private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService
-  ) {}
+    private authService: AuthServiceService,
+    private dadosCompartilhadosRestauranteService: DadosCompartilhadosRestauranteService
+  ) { }
 
   ngOnInit(): void {
     this.preencherCampos();
@@ -92,19 +92,22 @@ export class RestauranteEditarRestauranteComponent implements OnInit {
 
   atualizarRestaurante(): void {
 
+    console.log(this.restaurante)
+
     Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
+      title: "Tem certeza disso?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, alterar!",
+      cancelButtonText: "Cancelar"
     }).then((result) => {
 
       if (result.isConfirmed) {
         const pessoaAssociada = this.authService.getPessoa();
-        const enderecoAssociado : Endereco = new Endereco();
+        const enderecoAssociado: Endereco = new Endereco();
 
-        enderecoAssociado.id = this.idRestaurante;
         enderecoAssociado.cidade = this.cidade;
         enderecoAssociado.cep = this.cep;
         enderecoAssociado.bairro = this.bairro;
@@ -130,9 +133,9 @@ export class RestauranteEditarRestauranteComponent implements OnInit {
               console.error('Erro ao atualizar restaurante:', error);
             }
           );
-        Swal.fire("Saved!", "", "success");
+        Swal.fire("Salvo com Sucesso!", "", "success");
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Edição cancelada!", "", "info");
       }
     });
   }

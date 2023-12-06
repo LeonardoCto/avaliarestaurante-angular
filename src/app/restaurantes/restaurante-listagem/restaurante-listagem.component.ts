@@ -66,7 +66,7 @@ carregarMediasAvaliacoes() {
   this.restaurantes.forEach((restaurante) => {
     this.restauranteService.calcularMediaAvaliacoes(restaurante.id).subscribe(
       (media) => {
-        restaurante.media = media;
+        restaurante.media = parseFloat(media.toFixed(2));
       },
       (erro) => {
         console.error('Erro ao buscar média de avaliações', erro);
@@ -74,6 +74,7 @@ carregarMediasAvaliacoes() {
     );
   });
 }
+
 
 async exibirModalDeFiltros() {
   const { value: formValues } = await Swal.fire({
