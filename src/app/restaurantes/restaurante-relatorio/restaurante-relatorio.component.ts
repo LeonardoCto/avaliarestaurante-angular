@@ -12,40 +12,38 @@ import { DadosCompartilhadosEditarRestauranteService } from 'src/app/shared/serv
 export class RestauranteRelatorioComponent implements OnInit{
 
   constructor(private dadosCompartilhadosEditarRestauranteService : DadosCompartilhadosEditarRestauranteService,
-    private restauranteService : RestauranteService){}
+              private restauranteService : RestauranteService){}
 
-  restauranteSelecionado: Restaurante | undefined;
+  restaurantes: Restaurante[] = [];
   dadosRelatorio: any[] = [];
 
 ngOnInit(): void {
-  this.obterRestauranteSelecionado();
+  this.obterRestaurantesOrdenadosPorMaiorMedia();
 }
 
-obterRestauranteSelecionado(): void {
-  const idRestaurante = this.dadosCompartilhadosEditarRestauranteService.getId();
-
-  if (idRestaurante) {
-    this.restauranteService.buscarRestaurantePeloId(idRestaurante).subscribe((restaurante: Restaurante) => {
-      this.restauranteSelecionado = restaurante;
+obterRestaurantesOrdenadosPorMaiorMedia(): void {
+  this.restauranteService.ordenarRestauranteMaiorMedia().subscribe(
+    (restaurantes: Restaurante[]) => {
+      console.log('Restaurantes recebidos:', restaurantes);
+      this.restaurantes = restaurantes;
       this.preencherTabela();
-    });
-  } else {
-    console.error("ID do restaurante não encontrado");
-  }
+    },
+    (error) => {
+      console.error('Erro ao obter restaurantes ordenados por maior média:', error);
+    }
+  );
 }
 
 
 preencherTabela(): void {
-  console.log("MEDIA:" + this.restauranteSelecionado?.avaliacao)
-  if (this.restauranteSelecionado) {
+  this.restaurantes.forEach(restaurante => {
+    
     const dadosRelatorioItem = {
-      id: this.restauranteSelecionado.id,
-      nome: this.restauranteSelecionado.nome,
+      media: restaurante.media || 0,
+      nome: restaurante.nome,
     };
 
     this.dadosRelatorio.push(dadosRelatorioItem);
-  } else {
-    console.error("Restaurante não encontrado");
-  }
+  });
 }
 }
