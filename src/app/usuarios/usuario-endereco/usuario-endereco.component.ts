@@ -56,6 +56,20 @@ export class UsuarioEnderecoComponent {
         },
         (error) => {
           console.error('Erro ao cadastrar pessoa:', error);
+          console.error('Erro ao cadastrar o produto:', error);
+          if (error.status === 400 && error.error === 'Pessoa já cadastrada com este CPF!') {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ops...',
+              text: 'Usuário já cadastrado com este CPF!',
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ops...',
+              text: 'Usuário já cadastrado com este CPF!',
+            });
+          }
         }
       );
 

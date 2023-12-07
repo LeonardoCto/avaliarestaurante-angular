@@ -130,7 +130,20 @@ export class RestauranteEditarRestauranteComponent implements OnInit {
               console.log('Restaurante atualizado:', restauranteAtualizado);
             },
             error => {
-              console.error('Erro ao atualizar restaurante:', error);
+              console.error('Erro ao cadastrar o produto:', error);
+        if (error.status === 400 && error.error === 'Restaurante já cadastrado com este CNPJ!') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Restaurante já cadastrado com este CNPJ!',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Restaurante já cadastrado com este CNPJ!',
+          });
+        }
             }
           );
         Swal.fire("Salvo com Sucesso!", "", "success");

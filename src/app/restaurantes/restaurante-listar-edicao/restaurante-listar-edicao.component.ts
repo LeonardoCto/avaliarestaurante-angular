@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthServiceService } from './../../shared/service/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Restaurante } from 'src/app/shared/model/Restaurante';
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
 export class RestauranteListarEdicaoComponent implements OnInit{
 
   constructor(private restauranteService : RestauranteService, private authServiceService : AuthServiceService,
-    private dadosCompartilhadosEditarRestauranteService : DadosCompartilhadosEditarRestauranteService) { }
+    private dadosCompartilhadosEditarRestauranteService : DadosCompartilhadosEditarRestauranteService, private router : Router) { }
 
   public restaurantes: Array<Restaurante> = new Array();
 
@@ -69,12 +70,25 @@ buscarRestaurantes(){
 
   this.restauranteService.listarPorIdUsuario(id!).subscribe(
     resultado => {
-      this.restaurantes = resultado;
+      if (resultado.length === 0) {
+        Swal.fire({
+          title: 'Nenhum restaurante cadastrado',
+          text: 'Você não possui nenhum restaurante cadastrado. Clique em OK para cadastrar um restaurante.',
+          icon: 'warning',
+          showCancelButton: false,
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/cadastro']);
+          }
+        });
+      } else {
+        this.restaurantes = resultado;
+      }
     },
     erro => {
       console.log('Erro ao buscar restaurantes', erro);
     }
   );
-}
-
+  }
 }

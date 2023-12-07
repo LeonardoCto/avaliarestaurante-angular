@@ -37,9 +37,9 @@ obterRestaurantesOrdenadosPorMaiorMedia(): void {
 
 preencherTabela(): void {
   this.restaurantes.forEach(restaurante => {
-    
+
     const dadosRelatorioItem = {
-      media: restaurante.media || 0,
+      media: restaurante.media.toFixed(2), 
       nome: restaurante.nome,
     };
 

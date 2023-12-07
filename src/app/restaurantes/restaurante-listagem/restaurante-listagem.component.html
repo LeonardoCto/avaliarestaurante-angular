@@ -1,21 +1,16 @@
-
 <div class="flex justify-center items-center mt-4 mb-4">
-  <button (click)="exibirModalDeFiltros() "class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
+  <button (click)="exibirModalDeFiltros() " class="mx-2 rounded-full border border-gray-300 p-2 flex items-center">
     <a><img src="https://i.ibb.co/SfCjjNr/filter-filled-tool-symbol.png" alt="filter-filled-tool-symbol" border="0"></a>
     <p class="ml-2 font-segoe-ui">Filtros</p>
   </button>
 </div>
 <div class="mt-2 ml-8 mr-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-  <div
-    class="bg-white ml-4 rounded-lg overflow-hidden mb-2"
-    *ngFor="let restaurante of restaurantes; let i = index">
+  <div class="bg-white ml-4 rounded-lg overflow-hidden mb-2" *ngFor="let restaurante of restaurantes; let i = index">
 
     <a href="/detalhe">
-      <img [src]="restaurantes[i]?.imagem" alt="{{ restaurante.nome }}" class=" cursor-pointer rounded-lg w-full h-60 object-cover"
-      (click)="selecionarRestaurante(restaurante.id)"
-      (mouseenter)="onMouseEnter(i)"
-      (mouseleave)="onMouseLeave()"
-      [class.hovered]="hoveredIndex === i"/>
+      <img [src]="restaurantes[i]?.imagem" alt="{{ restaurante.nome }}"
+        class=" cursor-pointer rounded-lg w-full h-60 object-cover" (click)="selecionarRestaurante(restaurante.id)"
+        (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave()" [class.hovered]="hoveredIndex === i" />
     </a>
     <div class="p-1">
       <h3 class="text-xl font-semibold">{{ restaurante.nome }}</h3>
@@ -24,9 +19,5 @@
         <p-rating [cancel]="false" [readonly]="true" [stars]="1"></p-rating>
         <span class="ml-2">{{ restaurante.media }}</span>
       </div>
+    </div>
   </div>
-</div>
-
-
-
-

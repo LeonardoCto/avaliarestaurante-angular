@@ -52,11 +52,11 @@ export class UsuarioEditarPerfilComponent implements OnInit{
   }
   atualizarRestaurante(): void {
     Swal.fire({
-      title: "Do you want to save the changes?",
+      title: "Deseja salvar alterações?",
       showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`
+      confirmButtonText: "Salvar",
+      denyButtonText: `Cancelar`
     }).then((result) => {
       if (result.isConfirmed) {
 
@@ -88,9 +88,7 @@ export class UsuarioEditarPerfilComponent implements OnInit{
               console.error('Erro ao atualizar pessoa:', error);
             }
           );
-        Swal.fire("Saved!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Alterações salvas!", "", "success");
       }
     });
   }

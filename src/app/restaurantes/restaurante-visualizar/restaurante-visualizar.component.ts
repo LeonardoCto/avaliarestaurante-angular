@@ -170,10 +170,25 @@ export class RestauranteVisualizarComponent implements OnInit {
           },
           (error) => {
             console.error('Erro ao excluir avaliação:', error);
+            console.error('Erro ao cadastrar pessoa:', error);
+          console.error('Erro ao cadastrar o produto:', error);
+          if (error.status === 400 && error.error === 'Você não possui permissão para esta ação!') {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ops...',
+              text: 'Você não possui permissão para esta ação!',
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Ops...',
+              text: 'Você não possui permissão para esta ação!',
+            });
+          }
           }
         );
         Swal.fire({
-          title: "Restaurante deletado!",
+          title: "Avaliação deletada!",
           icon: "success"
         });
       }

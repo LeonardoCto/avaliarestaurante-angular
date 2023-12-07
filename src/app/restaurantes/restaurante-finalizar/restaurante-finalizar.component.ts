@@ -13,11 +13,11 @@ import Swal from 'sweetalert2';
 })
 export class RestauranteFinalizarComponent {
 
-  constructor(private router : Router, private restauranteService : RestauranteService,
-    private dadosCompartilhadosRestauranteService : DadosCompartilhadosRestauranteService,
-    private authServiceService : AuthServiceService) { }
+  constructor(private router: Router, private restauranteService: RestauranteService,
+    private dadosCompartilhadosRestauranteService: DadosCompartilhadosRestauranteService,
+    private authServiceService: AuthServiceService) { }
 
-  finalizarCadastro(){
+  finalizarCadastro() {
 
     Swal.fire({
       position: "center",
@@ -49,6 +49,19 @@ export class RestauranteFinalizarComponent {
       },
       (error) => {
         console.error('Erro ao cadastrar o produto:', error);
+        if (error.status === 400 && error.error === 'Restaurante já cadastrado com este CNPJ!') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Restaurante já cadastrado com este CNPJ!',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Restaurante já cadastrado com este CNPJ!',
+          });
+        }
       }
     );
   }
